@@ -32,6 +32,10 @@ textarea {
     .carousel-caption {
         z-index: 10 !important;
     }
+    #myCarousel {
+        margin-left: 250px;
+        width: 600px;
+    }
 }
 
 /*! m.ximalaya.com 2016-02-02 */

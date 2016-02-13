@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "欢迎加入老虎大家庭";
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -36,16 +36,28 @@
     </a>
 </div>
 
-<br />
 <div class="row">
-    <div class="col-md-3" style='font:14px/1.5 tahoma, arial, "宋体"!important'>
+    <div class="col-md-12">
         <h3>关于我们</h3>
-        为这个世界做一件美丽的事情... 本着这个简单的初心，一群有爱的父母走到了一起，开始为孩子们讲故事、为孩子们筛选优质童书、为父母们答疑解惑。老虎电台、老虎书店以及接下来的父母课堂便应运而生，旨在为孩子们的童年提供一个高质量的陪伴、为父母们的困惑提供一个长期性的指导。
+        为这个世界做一件美丽的事情... 本着这个简单的初心，一群有爱的父母走到了一起，开始为孩子们讲故事、为孩子们筛选优质童书、为父母们答疑解惑。老虎电台、老虎社区、老虎书店以及父母课堂陆续应运而生，旨在为孩子们的童年提供一个高质量的陪伴、为父母们的困惑提供一个长期性的指导。
     </div>
+</div>
+
+<div class="row">
     <div class="col-md-3">
         <h3>老虎电台</h3>
         老虎电台的故事节目发布在包括喜马拉雅、荔枝FM、宝贝听听等各大主流有声平台上面，排名均名列前茅，目前为止已经发布近70个专辑1200个故事节目，内容覆盖从绘本故事到儿童教育的方方面面。点击下面链接查看完整的专辑列表：
-        <p style="padding-top:5px"><a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206755174&idx=1&sn=95b3aeb756ea59d6ad8ee57de71c2de4#rd">老虎工作室电台节目完整列表</a></p>
+        <p style="padding-top:5px"><a asp-controller="Home" asp-action="RadioStation">老虎工作室电台节目完整列表</a></p>
+    </div>
+    <div class="col-md-3">
+        <h3>老虎社区</h3>
+        老虎工作室开辟微信群社区通道为爱学习爱分享的家长提供一个沟通交流的平台。社区内大家可以交流育儿心得、分享阅读体会，工作室也会定期为大家通报电台/父母课堂动态以及推荐优质童书。也欢迎大家对我们的工作提出更多建设性的意见。
+        <p style="padding-top:5px"><a asp-controller="Home" asp-action="Community" style="line-height: 1.6;">老虎社区欢迎您的光临</a></p>
+    </div>
+    <div class="col-md-3">
+        <h3>老虎书店</h3>
+        父母们知道书籍和阅读对于孩子的重要性，却又往往对童书的价格望而生畏。老虎工作室依托于电台几十万粉丝，跟国内外各大出版社合作，帮助大家筛选最最优秀的书籍，同时为大家争取到最最优惠的价格。听故事，读好书，是我们工作室希望能够帮助孩子和家长们一起做到的。
+        <p style="padding-top:5px"><a asp-controller="Home" asp-action="BookStore" style="line-height: 1.6;">老虎书店欢迎您的光临</a></p>
     </div>
     <div class="col-md-3">
         <h3>父母课堂</h3>
@@ -58,9 +70,6 @@
             </ul>
         </p>
     </div>
-    <div class="col-md-3">
-        <h3>老虎书店</h3>
-        父母们知道书籍和阅读对于孩子的重要性，却又往往对童书的价格望而生畏。老虎工作室依托于电台几十万粉丝，跟国内外各大出版社合作，帮助大家筛选最最优秀的书籍，同时为大家争取到最最优惠的价格。听故事，读好书，是我们工作室希望能够帮助孩子和家长们一起做到的。
-        <p style="padding-top:5px"><a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&amp;mid=400929506&amp;idx=3&amp;sn=651bb7d2a48061d1c1c863246d8aee49&amp;scene=21#wechat_redirect" target="_blank" data_ue_src="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&amp;mid=400929506&amp;idx=3&amp;sn=651bb7d2a48061d1c1c863246d8aee49&amp;scene=21#wechat_redirect" style="line-height: 1.6;">老虎书店欢迎您的光临</a></p>
 </div>
-</div>
+
+
