@@ -9,14 +9,16 @@ namespace webSite.ViewModels.Account
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
+        [Display(Name = "手机")]
+        //[EmailAddress]
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "密码")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "记住我？")]
         public bool RememberMe { get; set; }
     }
 }

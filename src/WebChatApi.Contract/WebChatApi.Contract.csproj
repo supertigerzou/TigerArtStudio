@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B602F558-734B-4357-A1A3-153BB973191A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebChatApi.Contract</RootNamespace>
+    <AssemblyName>WebChatApi.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BaseFramework.cs" />
+    <Compile Include="Extensions\Logger.cs" />
+    <Compile Include="Extensions\Extension.cs" />
+    <Compile Include="Enum\MessageType.cs" />
+    <Compile Include="Interface\IIdentifiable.cs" />
+    <Compile Include="Model\ExceptionInfo.cs" />
+    <Compile Include="Model\Exceptions\BaseException.cs" />
+    <Compile Include="Model\Exceptions\DataConflictException.cs" />
+    <Compile Include="Model\Exceptions\HttpOperationException.cs" />
+    <Compile Include="Model\Exceptions\InitializationFailureException.cs" />
+    <Compile Include="Model\Exceptions\InvalidObjectException.cs" />
+    <Compile Include="Model\Exceptions\NullObjectException.cs" />
+    <Compile Include="Model\Exceptions\OperationFailureException.cs" />
+    <Compile Include="Model\Exceptions\RemoteServiceOperationFailureException.cs" />
+    <Compile Include="Model\Exceptions\ResourceNotFoundServiceException.cs" />
+    <Compile Include="Model\Exceptions\ServiceException\BaseServiceException.cs" />
+    <Compile Include="Model\Exceptions\ServiceException\DataConflictServiceException.cs" />
+    <Compile Include="Model\Exceptions\ServiceException\InvalidObjectServiceException.cs" />
+    <Compile Include="Model\Exceptions\ServiceException\ResourceNotFoundServiceException.cs" />
+    <Compile Include="Model\Exceptions\ServiceException\ServiceErrorException.cs" />
+    <Compile Include="Model\Exceptions\ServiceException\UnauthorizedOperationServiceException.cs" />
+    <Compile Include="Model\Exceptions\ServiceException\UnknownServiceException.cs" />
+    <Compile Include="Model\Exceptions\ThreadAbortAlert.cs" />
+    <Compile Include="Model\Exceptions\UnauthorizedOperationException.cs" />
+    <Compile Include="Model\ImageObjectCollection.cs" />
+    <Compile Include="Model\MessageLog.cs" />
+    <Compile Include="Model\Message\MediaMessage.cs" />
+    <Compile Include="Model\ImageObject.cs" />
+    <Compile Include="Model\MusicObject.cs" />
+    <Compile Include="Model\Message\MusicMessage.cs" />
+    <Compile Include="Model\Message\GeographyMessage.cs" />
+    <Compile Include="Model\Message\ImageMessage.cs" />
+    <Compile Include="Model\Message\ContentMessage.cs" />
+    <Compile Include="Model\Message\EventMessage.cs" />
+    <Compile Include="Model\Message\LinkMessage.cs" />
+    <Compile Include="Model\Message\Message.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\InnerExceptionMessages.Designer.cs" />
+    <Compile Include="Resources\OuterExceptionMessages.Designer.cs" />
+    <Compile Include="Resources\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+      <DependentUpon>InnerExceptionMessages.resx</DependentUpon>
+      <DependentUpon>OuterExceptionMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\SerializableDictionary.cs" />
+    <Compile Include="Extensions\Singleton.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\InnerExceptionMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InnerExceptionMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OuterExceptionMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OuterExceptionMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

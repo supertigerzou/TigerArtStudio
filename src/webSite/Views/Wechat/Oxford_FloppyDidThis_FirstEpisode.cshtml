@@ -1,0 +1,93 @@
+﻿@model JSSDKViewModel
+@using Microsoft.AspNet.Http.Authentication
+@{
+    ViewData["Title"] = "第一阶段第三课 - Floppy Did This(上集)";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/story.css" />
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/add-on/jplayer.playlist.min.js"></script>
+</head>
+<body>
+    <div id="jp_container_1" style="margin-left: 20px" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <img src="http://www.tigerartstudio.cn/mediaFiles/FloppyDidThis_FirstEpisode.png" style="width: 300px; height: 327px; display: inline;margin-left:5px">
+
+            <audio style="width: 300px; margin: 10px 5px 10px 5px" src="http://www.tigerartstudio.cn/mediaFiles/FloppyDidThis_FirstEpisode.mp3" controls autoplay loop>
+                <p>Your browser does not support the <code>audio</code> element </p>
+            </audio>
+
+            <div style="font-family: KaiTi; font-size: small; color:black;">
+                本课件有效期截止<span style="color:red; font-weight:bold">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">17次</span>即可顺利毕业获赠伴读音频。
+</div>
+            <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                <a style="float: left; margin-left: 12px" href="http://dwz.cn/3sQA1d" class="btn btn-primary btn-lg active" role="button">葫芦兄弟</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652363929&idx=2&sn=e793f269c15ed61dd50cd8505074aa32&scene=23&srcid=0531eyERVm63Grw2vDdfEjfm#rd" class="btn btn-primary btn-lg active" role="button">专家课堂</a>
+            </div>
+        </div>
+    </div>
+    <div class="shade"></div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    /*
+     * 注意：
+     * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+     * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+     * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+     *
+     * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+     * 邮箱地址：weixin-open@qq.com
+     * 邮件主题：【微信JS-SDK反馈】具体问题
+     * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+     */
+    wx.config({
+        debug: false,
+        appId: 'wxf0aa207b2437d9bc',
+        timestamp: @Model.Timestamp,
+        nonceStr: '@Model.NouceString',
+        signature: '@Model.Signature',
+        jsApiList: [
+          // 所有要调用的 API 都要加到这个列表中
+          'checkJsApi',
+           'onMenuShareTimeline',
+           'onMenuShareAppMessage',
+           'showMenuItems',
+           'showOptionMenu'
+        ]
+    });
+    wx.ready(function () {
+        // 在这里调用 API
+        wx.onMenuShareTimeline({
+            title: '几代人心中最美好的回忆，《葫芦兄弟》教会孩子正直、勇敢和团结',
+            desc: '葫芦兄弟是大人眼中的顽童，却是孩子眼中的英雄！他们为救爷爷前赴后继，为除妖怪使出必杀技。用修行克服自身戾气，用团结抛弃个人主义。',
+            link: 'http://dwz.cn/3sQA1d',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/huluwa_1.png',
+            trigger: function (res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function (res) {
+                window.location.href = 'http://dwz.cn/3sQA1d';
+            },
+            cancel: function (res) {
+                //alert('已取消');
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    });
+</script>
+</html>

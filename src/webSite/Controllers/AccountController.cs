@@ -104,8 +104,8 @@ namespace webSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.PhoneNumber, NormalizedEmail = model.Name, Email = model.City + "-" + model.Name, EmailConfirmed = model.Sex, LockoutEnd = model.BirthDate, PhoneNumber = model.PhoneNumber };
+                var result = await _userManager.CreateAsync(user, "aA@111");
                 if (result.Succeeded)
                 {
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713

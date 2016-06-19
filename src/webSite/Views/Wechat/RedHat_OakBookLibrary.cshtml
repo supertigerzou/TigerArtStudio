@@ -1,0 +1,116 @@
+﻿@model JSSDKViewModel
+@using Microsoft.AspNet.Http.Authentication
+@{
+    ViewData["Title"] = "红绒帽女孩儿 - 橡树图书馆（图书馆是社区里的公共场所，是无私分享的地方）";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/story.css" />
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/add-on/jplayer.playlist.min.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function () {
+
+            $(".free-btn").bind("click", function() {
+                $(".main-bg").css("-webkit-filter", "blur(10px)");
+                $(".shade").show();
+            });
+
+        });
+        //]]>
+    </script>
+    <style type="text/css">
+        .shade {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(../images/Tip_hongrongmao.png) 10px top no-repeat rgba(0,0,0,0.5);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="jp_container_1" style="margin-left: 20px" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <img src="http://www.tigerartstudio.cn/mediaFiles/books1/OakBookLibrary.jpg" style="width: 300px; height: 327px; display: inline;margin-left:5px;margin-top:-10px">
+
+            <audio style="width: 300px; margin: -10px 5px 0px 5px" src="http://www.tigerartstudio.cn/mediaFiles/books1/OakBookLibrary.mp3" controls autoplay loop>
+                <p>Your browser does not support the <code>audio</code> element </p>
+            </audio>
+
+            <div style="font-family: KaiTi; font-size: medium; color:red;">
+                《红绒帽女孩儿》高清故事音频全三集新鲜出炉，点击右下角按钮免费领取。如果孩子喜欢这几个故事的话可以参加配套书籍的团购，点击下方按钮前往。
+            </div>
+            <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                <a style="float: left; margin-left: 12px" href="http://dwz.cn/3sQA1d" class="btn btn-primary btn-lg active" role="button">参加团购</a>
+                <a style="float: right; margin-right: 12px" href="javascript:;" class="btn btn-primary btn-lg active free-btn" role="button">免费领取</a>
+            </div>
+        </div>
+    </div>
+    <div class="shade"></div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    /*
+     * 注意：
+     * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+     * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+     * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+     *
+     * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+     * 邮箱地址：weixin-open@qq.com
+     * 邮件主题：【微信JS-SDK反馈】具体问题
+     * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+     */
+    wx.config({
+        debug: false,
+        appId: 'wxf0aa207b2437d9bc',
+        timestamp: @Model.Timestamp,
+        nonceStr: '@Model.NouceString',
+        signature: '@Model.Signature',
+        jsApiList: [
+          // 所有要调用的 API 都要加到这个列表中
+          'checkJsApi',
+           'onMenuShareTimeline',
+           'onMenuShareAppMessage',
+           'showMenuItems',
+           'showOptionMenu'
+        ]
+    });
+    wx.ready(function () {
+        // 在这里调用 API
+        wx.onMenuShareTimeline({
+            title: '红绒帽女孩儿 - 橡树图书馆（图书馆是社区里的公共场所，是无私分享的地方）',
+            desc: '在夜深人静的时候，关掉所有的灯，在喧嚣和霓虹之上，倾听大自然的静籁。不管我们居于何地，在寂静的夜，都能欣赏到星星月亮无与伦比的迷人光辉，就像戴红帽子的女孩和她的朋友们。',
+            link: 'http://www.tigerartstudio.cn/wechat/redhat_oakbooklibrary',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/OakBookLibrary.jpg',
+            trigger: function (res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function (res) {
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504880385&idx=1&sn=a8e84946d68221c25166c95fc8140aa4&scene=23&srcid=0607Lkr4sMHNAg3etjQCZd0J#rd';
+            },
+            cancel: function (res) {
+                //alert('已取消');
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>绘本阅读示范- 小公主系列之『I Don’t Want to Wash My Hands』</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/add-on/jplayer.playlist.min.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function () {
+
+            new jPlayerPlaylist({
+                jPlayer: "#jquery_jplayer_1",
+                cssSelectorAncestor: "#jp_container_1"
+            }, [
+                {
+                    title: "小公主系列书籍绘本阅读示范",
+                    artist: "月亮姐姐",
+                    mp3: "http://www.tigerartstudio.cn/mediaFiles/ReadingShowcases.mp3",
+                    poster: "http://www.tigerartstudio.cn/mediaFiles/ReadingShowcases.jpg"
+                }
+            ], {
+                swfPath: "../../dist/jplayer",
+                supplied: "webmv, ogv, m4v, oga, mp3",
+                useStateClassSkin: true,
+                autoBlur: false,
+                smoothPlayBar: true,
+                keyEnabled: true,
+                audioFullScreen: true
+            });
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="jp_container_1" style="margin-left: 20px" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+            <div class="jp-gui">
+                <div class="jp-video-play">
+                    <button class="jp-video-play-icon" role="button" tabindex="0">play</button>
+                </div>
+                <div class="jp-interface">
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
+                    </div>
+                    <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+                    <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+                    <div class="jp-controls-holder">
+                        <div class="jp-controls">
+                            <button class="jp-previous" role="button" tabindex="0">previous</button>
+                            <button class="jp-play" role="button" tabindex="0">play</button>
+                            <button class="jp-next" role="button" tabindex="0">next</button>
+                            <button class="jp-stop" role="button" tabindex="0">stop</button>
+                        </div>
+                    </div>
+                    <div class="jp-details">
+                        <div class="jp-title" aria-label="title">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <div style="font-family: Tahoma; font-size: small">
+                根据“小公主系列”制作的系列卡通片在100多个国家热播，在英国仅播出一个月，便上升为儿童频道收视冠军，并获得斯图加特国际动画大奖。通过动画让孩子熟悉人物，引起孩子的兴趣，久而久之，孩子就会自己拿起书了哦~
+            </div>
+            <div style="font-family: Tahoma; font-size: small; color:red; margin-top:10px">
+                小公主20册大合集（礼盒装）火热团购中，原价1380元，工作室团购价258元，会员价245元，购买请<a href="http://weidian.com/item_classes.html?userid=251230088&c=63590764">点击这里</a>，报名配套伴读课程请<a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652363551&idx=2&sn=704e621bb9f076f62f6268d9eae1abee&scene=23&srcid=0503XTH9MbXvXPQDg0Qa8af4#rd">点击这里</a>。
+            </div>
+            <div class="jp-playlist">
+                <ul>
+                    <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                    <li>&nbsp;</li>
+                </ul>
+            </div>
+            <div class="jp-no-solution">
+                <span>Update Required</span>
+                To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

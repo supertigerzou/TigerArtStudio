@@ -20,6 +20,13 @@ namespace webSite.Controllers
             return View();
         }
 
+        public IActionResult GetFreeBook()
+        {
+            ViewData["Message"] = "好书抢不停。";
+
+            return View();
+        }
+
         public IActionResult RadioStation()
         {
             return View();

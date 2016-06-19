@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>如何有效地使用牛津阅读树</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="../lib/jplayer/dist/add-on/jplayer.playlist.min.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function () {
+
+            new jPlayerPlaylist({
+                jPlayer: "#jquery_jplayer_1",
+                cssSelectorAncestor: "#jp_container_1"
+            }, [
+                {
+                    title: "如何有效地使用牛津阅读树",
+                    artist: "月亮姐姐",
+                    mp3: "http://www.tigerartstudio.cn/mediaFiles/HowToUseOxfordTree.mp3",
+                    poster: "http://www.tigerartstudio.cn/mediaFiles/oxford_reading_painting_tree.png"
+                }
+            ], {
+                swfPath: "../../dist/jplayer",
+                supplied: "webmv, ogv, m4v, oga, mp3",
+                useStateClassSkin: true,
+                autoBlur: false,
+                smoothPlayBar: true,
+                keyEnabled: true,
+                audioFullScreen: true
+            });
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="jp_container_1" style="margin-left: 20px" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+            <div class="jp-gui">
+                <div class="jp-video-play">
+                    <button class="jp-video-play-icon" role="button" tabindex="0">play</button>
+                </div>
+                <div class="jp-interface">
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
+                    </div>
+                    <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+                    <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+                    <div class="jp-controls-holder">
+                        <div class="jp-controls">
+                            <button class="jp-previous" role="button" tabindex="0">previous</button>
+                            <button class="jp-play" role="button" tabindex="0">play</button>
+                            <button class="jp-next" role="button" tabindex="0">next</button>
+                            <button class="jp-stop" role="button" tabindex="0">stop</button>
+                        </div>
+                    </div>
+                    <div class="jp-details">
+                        <div class="jp-title" aria-label="title">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <div style="font-family: Tahoma; font-size: small">
+                老师带读，独立阅读（低阶朗读、高阶默读），大量语音输入（听原版音频、看原版视频），亲子互动（课后作业及游戏）。每一个绘本故事带读老师都会给到家长和孩子贴心的指导。
+            </div>
+            <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                <a style="float: left; margin-left: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=18#wechat_redirect" class="btn btn-primary btn-lg active" role="button">加入我们</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504879827&idx=2&sn=f8ddacef0f7745a923d267d8d7d90cbb&scene=23&srcid=0427XdTm544iV5rzNAFBnnxh#rd" class="btn btn-primary btn-lg active" role="button">立即报名</a>
+            </div>
+            <div class="jp-playlist">
+                <ul>
+                    <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                    <li>&nbsp;</li>
+                </ul>
+            </div>
+            <div class="jp-no-solution">
+                <span>Update Required</span>
+                To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  /*
+   * 注意：
+   * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+   * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+   * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+   *
+   * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+   * 邮箱地址：weixin-open@qq.com
+   * 邮件主题：【微信JS-SDK反馈】具体问题
+   * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+   */
+  wx.config({
+    debug: false,
+    appId: 'wxf0aa207b2437d9bc',
+    timestamp: 1463816958,
+    nonceStr: 'alibaba',
+    signature: '7f6a103fbbfb670f43531e1916ff1a69e7b8c3be',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'checkJsApi',
+       'onMenuShareTimeline',
+       'onMenuShareAppMessage',
+       'onMenuShareQQ',
+       'onMenuShareWeibo',
+       'onMenuShareQZone',
+       'hideMenuItems',
+       'showMenuItems',
+       'hideAllNonBaseMenuItem',
+       'showAllNonBaseMenuItem',
+       'translateVoice',
+       'startRecord',
+       'stopRecord',
+       'onVoiceRecordEnd',
+       'playVoice',
+       'onVoicePlayEnd',
+       'pauseVoice',
+       'stopVoice',
+       'uploadVoice',
+       'downloadVoice',
+       'chooseImage',
+       'previewImage',
+       'uploadImage',
+       'downloadImage',
+       'getNetworkType',
+       'openLocation',
+       'getLocation',
+       'hideOptionMenu',
+       'showOptionMenu',
+       'closeWindow',
+       'scanQRCode',
+       'chooseWXPay',
+       'openProductSpecificView',
+       'addCard',
+       'chooseCard',
+       'openCard'
+    ]
+  });
+  wx.ready(function () {
+      // 在这里调用 API
+      wx.onMenuShareTimeline({
+          title: '如何有效地使用牛津阅读树',
+          desc: '老师带读，独立阅读（低阶朗读、高阶默读），大量语音输入（听原版音频、看原版视频），亲子互动（课后作业及游戏）。每一个绘本故事带读老师都会给到家长和孩子贴心的指导。',
+          link: 'http://www.tigerartstudio.cn/englishClasses/HowToUseOxfordTree.html',
+          imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/oxford_reading_painting_tree.png',
+          trigger: function (res) {
+              // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+              //alert('用户点击发送给朋友');
+          },
+          success: function (res) {
+              alert('感谢您的分享，老虎工作室陪您一起探索这个美丽的世界~');
+          },
+          cancel: function (res) {
+              //alert('已取消');
+          },
+          fail: function (res) {
+              alert(JSON.stringify(res));
+          }
+      });
+  });
+</script>
+</html>
