@@ -1,7 +1,7 @@
 ﻿@model JSSDKViewModel
 @using Microsoft.AspNet.Http.Authentication
 @{
-    ViewData["Title"] = "♬【伴读试听】《小公主》第20集 - I Don't Want to Go to Hospital!";
+    ViewData["Title"] = "♪【伴读】《牛津阅读树》第一阶段第十三课 - Floppy's Fun Phonics";
     Layout = null;
 }
 
@@ -14,26 +14,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/story.css" />
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css" />
-    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday_1.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../lib/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
-    <script type="text/javascript" src="../lib/jplayer/dist/add-on/jplayer.playlist.min.js"></script>
+    @*<script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function () {
+
+            $(".free-btn").bind("click", function() {
+                $(".main-bg").css("-webkit-filter", "blur(10px)");
+                $(".shade").show();
+            });
+
+        });
+        //]]>
+    </script>*@
+    @*<style type="text/css">
+        .shade {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(../images/OxfordLevel0_small.png) 10px top no-repeat rgba(0,0,0,0.5);
+            display: none;
+        }
+    </style>*@
 </head>
 <body>
-    <div id="jp_container_1" style="margin-left: 20px" class="jp-video jp-video-270p" role="application" aria-label="media player">
+    <div id="jp_container_1" style="margin-left: 2px" class="jp-video jp-video-270p" role="application" aria-label="media player">
         <div class="jp-type-playlist">
-            <img src="http://www.tigerartstudio.cn/mediaFiles/books1/IDontWantToGoToHospital.jpg" style="width: 300px; height: 327px; display: inline;margin-left:5px">
+            <img src="http://www.tigerartstudio.cn/mediaFiles/Oxford/20160626.png" style="width: 80%; display: block;margin: 0 auto;">
 
-            <audio style="width: 300px; margin: 0px 5px 0px 5px" src="http://www.tigerartstudio.cn/mediaFiles/books1/IDontWantToGoToHospital.mp3" controls autoplay loop>
+            <audio style="width: 98%; margin: 0px 5px 0px 3px" src="http://www.tigerartstudio.cn/mediaFiles/Oxford/20160626.mp3" controls autoplay loop>
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
 
             <div style="font-family: KaiTi; font-size: small; color:black;">
-                「Brown Bear Collection」 & 「The Little Princess's Big Bookshelf」火热团购中，点击左下角的<b>原版进口</b>了解详情，点击右下角的<b>配套课程</b>报名老虎工作室为孩子量身定做的英文伴读课程。
-            </div>
+                本课件有效期截止<span style="color:red; font-weight:bold">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">17次</span>即可顺利毕业获赠伴读音频。<span style="color:red; font-weight:bold">《宝宝的量子物理学》</span>火热补团中，点击下方<span style="font-weight:bold;font-size:medium">暑期专场</span>了解详情。
+</div>
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">配套书籍</a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364238&idx=2&sn=27bc63b28b0050f136d91cfda9f47a86&scene=23&srcid=0619bDRLHg57t2zmDBaaq496#rd" class="btn btn-primary btn-lg active free-btn" role="button">配套课程</a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">暑期专场</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504880660&idx=3&sn=ca22d287fa28b708bee9e385ebf5237c&scene=23&srcid=0626gCmsjWydhVWr4FA3sVpS#rd" class="btn btn-primary btn-lg active free-btn" role="button">精彩课程</a>
             </div>
         </div>
     </div>
@@ -70,16 +91,16 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '♬【伴读试听】《小公主》第20集 - I Don\'t Want to Go to Hospital!',
-            desc: '初看小公主，她相貌平平，衣着朴素，平淡无奇，甚至可以说有点丑陋，她有着同年龄阶段孩子的天真和任性，孩子们身上能发生的所有事情或所有想法，在小公主的世界里都能找到它们的身影。',
-            link: 'http://www.tigerartstudio.cn/wechat/LittlePrincess_IDontWantToGoToHospital',
-            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/IDontWantToGoToHospital.jpg',
+            title: '【我要报名】六堂课让孩子爱上英文，迷上物理 | 公益课程，英文启蒙 + 物理启蒙',
+            desc: '此次伴读课程专门为英文基础不好和物理基础薄弱的家长而设，听完6堂课程后，您可以轻松自信地做自己孩子的英文启蒙老师和物理启蒙老师。',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504880660&idx=3&sn=ca22d287fa28b708bee9e385ebf5237c&scene=23&srcid=0626gCmsjWydhVWr4FA3sVpS#rd',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/phisics.png',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364238&idx=2&sn=27bc63b28b0050f136d91cfda9f47a86&scene=23&srcid=0619bDRLHg57t2zmDBaaq496#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504880660&idx=3&sn=ca22d287fa28b708bee9e385ebf5237c&scene=23&srcid=0626gCmsjWydhVWr4FA3sVpS#rd';
             },
             cancel: function (res) {
                 //alert('已取消');

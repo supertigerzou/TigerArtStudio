@@ -1,7 +1,7 @@
 ﻿@model JSSDKViewModel
 @using Microsoft.AspNet.Http.Authentication
 @{
-    ViewData["Title"] = "♪【伴读】恐龙来了 - 养育恐龙的幼崽+开角龙";
+    ViewData["Title"] = "♪《恐龙来了》第一集 - 开角龙（体重可达2吨，大约4.8米体长）";
     Layout = null;
 }
 
@@ -25,14 +25,14 @@
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
             <div style="font-family: Tahoma; font-size: small; color:black;margin-bottom:10px">
-                分享此故事到朋友圈，系统会自动引导您到本系列13集恐龙高清音频的下载页面，拷贝MP3文件到任何可播放的设备，就可以陪着孩子一起探索神奇的恐龙世界啦~
+                开角龙外观和三角龙极为相似，但体形较小，可是却拥有比三角龙更夸张华丽的颈部盾板，但是其盾板是中空的，因此科学家认为其盾板不够坚固，应该是用来威吓敌人或如孔雀尾部用来求偶用的。
             </div>
-            <div style="font-family: Tahoma; font-size: small; color:red;">
-                2016年下半年《东方娃娃杂志》火热征订中，一天不到一块钱，订阅国内最受欢迎的幼儿刊物，赠送一套四本惊艳立体手工书。
+            <div style="font-family: Tahoma; font-size: small; color:blue;">
+                暑期特价童书团购火热进行中，本故事配套书籍也在其中，赶紧点击左下方的<span style="font-weight:bold; font-size:medium; color:red">暑期特价</span>按钮了解详情。
             </div>
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90" class="btn btn-primary btn-lg active" role="button">订阅杂志</a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364156&idx=1&sn=72baa0dbe2c2267a60fd72a341b7aeac&scene=23&srcid=0614489XJHSS5jfLNNjwgIK7#rd" class="btn btn-primary btn-lg active" role="button">免费资源</a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90" class="btn btn-primary btn-lg active" role="button">暑期特价</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd" class="btn btn-primary btn-lg active free-btn" role="button">精彩课程</a>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '♪【伴读】恐龙来了 - 养育恐龙的幼崽+开角龙',
+            title: '♪《恐龙来了》第一集 - 开角龙（体重可达2吨，大约4.8米体长）',
             desc: '《恐龙来了》不仅拥有最权威的恐龙百科知识、最齐全的恐龙品种展示、最真实的恐龙生活全景、最震撼的恐龙生活图画，随书还超值附赠大型恐龙奇趣探险棋、恐龙地板触摸认知图、百变炫酷恐龙游戏卡牌20张、动手剪裁人物棋子36枚、数字骰子等。多重智力开发游戏，不仅让孩子获得身临其境的恐龙探寻感受，还能培养孩子认知和动手能力。孩子们最渴望的恐龙活动全景，家长们最期盼的恐龙百科知识，尽在《恐龙来了》！',
             link: 'http://www.tigerartstudio.cn/wechat/dinasourreading_1',
             imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/dinasourreading_1.jpg',
@@ -77,7 +77,7 @@
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364145&idx=1&sn=dac426b9969641a6f0f7bd2c1c4c7094&scene=23&srcid=0615tCDCqLXZapHfozg72Txy#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364570&idx=1&sn=b1baf95811e568df64db499f87bdc25a&scene=23&srcid=0711cBP5q8XPd8wc7Y0zBGbV#rd';
             },
             cancel: function (res) {
                 //alert('已取消');

@@ -1,7 +1,7 @@
 ﻿@model JSSDKViewModel
 @using Microsoft.AspNet.Http.Authentication
 @{
-    ViewData["Title"] = "牛津第一阶段第八课 - Chip's Letter Sounds(下集)";
+    ViewData["Title"] = "♪【伴读】《牛津阅读树》第一阶段第十五课 - A Good Trick";
     Layout = null;
 }
 
@@ -17,43 +17,43 @@
     <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday_1.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
     @*<script type="text/javascript">
-        //<![CDATA[
-        $(document).ready(function () {
+            //<![CDATA[
+            $(document).ready(function () {
 
-            $(".free-btn").bind("click", function() {
-                $(".main-bg").css("-webkit-filter", "blur(10px)");
-                $(".shade").show();
+                $(".free-btn").bind("click", function() {
+                    $(".main-bg").css("-webkit-filter", "blur(10px)");
+                    $(".shade").show();
+                });
+
             });
-
-        });
-        //]]>
-    </script>*@
-    <style type="text/css">
-        .shade {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url(../images/OxfordLevel0_small.png) 10px top no-repeat rgba(0,0,0,0.5);
-            display: none;
-        }
-    </style>
+            //]]>
+        </script>*@
+    @*<style type="text/css">
+            .shade {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url(../images/OxfordLevel0_small.png) 10px top no-repeat rgba(0,0,0,0.5);
+                display: none;
+            }
+        </style>*@
 </head>
 <body>
     <div id="jp_container_1" style="margin-left: 2px" class="jp-video jp-video-270p" role="application" aria-label="media player">
         <div class="jp-type-playlist">
-            <img src="http://www.tigerartstudio.cn/mediaFiles/books1/ChipsLetterSounds.png" style="width: 80%; display: block;margin: 0 auto;">
+            <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Oxford/AGoodTrick.jpg" style="height: 270px; display: block;margin: 0 auto;">
 
-            <audio style="width: 98%; margin: 0px 5px 0px 3px" src="http://www.tigerartstudio.cn/mediaFiles/books1/ChipsLetterSounds_SecondEpisode.mp3" controls autoplay loop>
+            <audio style="width: 98%; margin: 0px 5px 0px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Oxford/AGoodTrick.mp3" controls autoplay loop>
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
 
             <div style="font-family: KaiTi; font-size: small; color:black;">
-                本课件有效期截止<span style="color:red; font-weight:bold">7/10</span>,如需领取完整课程音频包，请点击下方的<span style="font-weight:bold;font-size:medium">加入我们</span>联系社区管理员办理补签到手续。如需本书请点击下方的<span style="font-weight:bold;font-size:medium">配套书籍</span>购买。
-</div>
+                本课件有效期截止<span style="color:red; font-weight:bold">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">17次</span>即可顺利毕业获赠伴读音频。<br/><br /><span style="color:red; font-weight:bold">《Step into Reading》一阶&二阶</span>火热团购中，点击下方<span style="font-weight:bold;font-size:medium">原版进口</span>了解详情。
+            </div>
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90" class="btn btn-primary btn-lg active" role="button">订阅杂志</a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">原版进口</a>
                 <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary btn-lg active free-btn" role="button">精彩文章</a>
             </div>
         </div>
@@ -91,16 +91,16 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '2016年下半年《东方娃娃杂志》征订，一天不到一块钱，订阅国内最受欢迎的幼儿刊物，赠送一套四本惊艳立体手工书',
-            desc: '杂志期刊因为其连续性，每个月都有期待、每个月都有新鲜，对于培养孩子的阅读习惯，塑造亲子阅读氛围有独特的效果，这也是我们推荐期刊的重要原因。',
-            link: 'http://www.tigerartstudio.cn/wechat/OrientalBaby',
-            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/OrientalBaby.png',
+            title: '【我要报名】史上最贴心牛津阅读树公益伴读课程 | 覆盖1-6阶全部内容 ',
+            desc: '通过专业的英语教学设计，整套书特别容易引发孩子的学习兴趣，好看好玩又学得容易，所以使得Oxford Reading Tree《牛津阅读树》成为了全球风靡的英语分级阅读教材。',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652363839&idx=3&sn=58e0a78354d243d4be3cc9989e0fccd7&scene=23&srcid=0524UwaX1PoEQuSkTOEQ9HSY#rd',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/oxford.jpg',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504880369&idx=1&sn=d191ab3c2d5072eaac4c63f01f400ded&scene=23&srcid=06061WgSv0gR9Efudrn89YXE#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504880660&idx=3&sn=ca22d287fa28b708bee9e385ebf5237c&scene=23&srcid=0626gCmsjWydhVWr4FA3sVpS#rd';
             },
             cancel: function (res) {
                 //alert('已取消');

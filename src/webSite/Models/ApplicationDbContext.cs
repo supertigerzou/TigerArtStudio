@@ -56,9 +56,11 @@ namespace webSite.Models
     {
         public int ID { get; set; }
         public DateTime Date { get; set; }
-        public bool IsMorning { get; set; }
+        public bool? IsMorning { get; set; }
         public string Description { get; set; }
         public string Author { get; set; }
         public string Title { get; set; }
+        public string Type { get; set; }
+        public string AudioName { get; set; }
     }
 }

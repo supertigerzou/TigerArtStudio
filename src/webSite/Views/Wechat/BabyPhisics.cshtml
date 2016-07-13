@@ -4,16 +4,7 @@
     ViewData["Title"] = Model.Title;
     Layout = null;
 
-    HtmlString message;
-
-    if (ViewData["enableRolling"].ToString() == "true")
-    {
-        message = new HtmlString(string.Format("<div style='font - family: KaiTi; font - size: smaller; color: darkcyan; margin - bottom:10px; height: 185px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 185px; ' scrollamount=1>{0}</marquee></div>", Model.Description));
-    }
-    else
-    {
-        message = new HtmlString(string.Format("<div style='font - family: KaiTi; font - size: smaller; color: darkcyan; margin - bottom:10px; height: 185px; overflow: auto'>{0}</div>", Model.Description));
-    }
+    HtmlString message = new HtmlString(string.Format("<div style='font - family: KaiTi; font - size: smaller; color: darkcyan; margin - bottom:10px; height: 150px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 150px; ' scrollamount=1>{0}<br/><br/>本课件有效期截止<span style=\"font-weight:bold; font-size:medium; color:deeppink\">7/10</span>,如需领取完整课程音频包，请联系<a href=\"http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=23&srcid=0613I31UiwB1zWO3cvP7vMkt#rd\">社区管理员</a>办理补签到手续，点击下方的<span style=\"font-weight:bold; font-size:medium; color:deeppink\">配套书籍</span>直接购买。</marquee></div>", Model.Description));
 }
 
 <!DOCTYPE html>
@@ -54,18 +45,18 @@
 <body>
     <div id="jp_container_1" style="margin-left: 2px; height: 100%" class="jp-video jp-video-270p" role="application" aria-label="media player">
         <div class="jp-type-playlist">
-            <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).jpg" style="height: 220px; max-width: 98%; display: block;margin: 0 auto;">
+            <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/BabyPhisics/@(Model.ID).png" style="height: 250px; display: block;margin: 0 auto;">
 
-            <audio style="width: 98%; margin: 3px 5px 3px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).mp3" controls autoplay loop>
+            <audio style="width: 98%; margin: 3px 5px 3px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/BabyPhisics/@(Model.ID).mp3" controls autoplay loop>
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
             @Html.Raw(message)
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">我要买书</a>*@
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90&wfr=qfriend" class="btn btn-primary btn-lg active" role="button">精品童书</a>
+                @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">原版进口</a>*@
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90&wfr=qfriend" class="btn btn-primary btn-lg active" role="button">配套书籍</a>
                 @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary btn-lg active free-btn" role="button">精彩文章</a>*@
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd" class="btn btn-primary btn-lg active free-btn" role="button">我要报名</a>
                 @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=23&srcid=0613I31UiwB1zWO3cvP7vMkt#rd" class="btn btn-primary btn-lg active free-btn" role="button">加入我们</a>*@
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652363627&idx=3&sn=1842f1b59043c157b26b3a368a482fa2&scene=23&srcid=0701ewd7qLC3GhpCE9TXZ1wr#rd" class="btn btn-primary btn-lg active free-btn" role="button">免费领取</a>
             </div>
         </div>
     </div>
@@ -104,14 +95,14 @@
         wx.onMenuShareTimeline({
             title: '@Html.Raw(Model.Title)',
             desc: '@Html.Raw(Model.Description)',
-            link: '@Model.Url',
-            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).jpg',
+            link: 'http://www.tigerartstudio.cn/wechat/BabyPhisics/@Model.ID',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/BabyPhisics/@(Model.ID)_small.png',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364353&idx=3&sn=02fa13bdf97b4310097a7983244dcc09&scene=23&srcid=0629zX6R4DHSnPMFbn7hL4HV#rd';
             },
             cancel: function (res) {
                 //alert('已取消');

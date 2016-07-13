@@ -1,7 +1,7 @@
 ﻿@model JSSDKViewModel
 @using Microsoft.AspNet.Http.Authentication
 @{
-    ViewData["Title"] = "♬I Want a Party!";
+    ViewData["Title"] = "♬【伴读试听】《小公主》第19集 - I Want a Party!";
     Layout = null;
 }
 
@@ -29,11 +29,11 @@
             </audio>
 
             <div style="font-family: KaiTi; font-size: small; color:black;">
-                根据各位会员家长的强烈要求，《小公主》书籍为大家安排少量返场，6/19晚8点，300套，售完即止。
+                「Brown Bear Collection」 & 「The Little Princess's Big Bookshelf」火热团购中，点击左下角的<b>原版进口</b>了解详情，点击右下角的<b>配套课程</b>报名老虎工作室为孩子量身定做的英文伴读课程。
             </div>
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px" href="http://dwz.cn/3sQA1d" class="btn btn-primary btn-lg active" role="button">订阅杂志</a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary btn-lg active free-btn" role="button">精彩文章</a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">配套书籍</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364238&idx=2&sn=27bc63b28b0050f136d91cfda9f47a86&scene=23&srcid=0619bDRLHg57t2zmDBaaq496#rd" class="btn btn-primary btn-lg active free-btn" role="button">配套课程</a>
             </div>
         </div>
     </div>
@@ -70,16 +70,16 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '【伴读】《葫芦兄弟》第一集 - 神峰奇遇（蛇蝎二妖逃出葫芦山，老爷爷和穿山甲坠入深渊）',
-            desc: '在孩子未识字，需成人给孩子读书的阶段，“好阅读”尽量使用书面语，“坏阅读”则抛开书面文字大量使用口语。当我们不断用优质童书滋养孩子，孩子在阅读理解、速度与记忆方面也悄然积累，为将来的语文能力打下坚实基础。老虎工作室的中文伴读活动旨在为孩子们甄选好书，输送养分，从“量”与“质”方面去成就“好阅读”，逐步实现自主阅读。',
-            link: 'http://www.tigerartstudio.cn/wechat/CalabashBrothersReading_1',
-            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/CalabashBrothers_1.jpg',
+            title: '♬【伴读试听】《小公主》第19集 - I Want a Party!',
+            desc: '初看小公主，她相貌平平，衣着朴素，平淡无奇，甚至可以说有点丑陋，她有着同年龄阶段孩子的天真和任性，孩子们身上能发生的所有事情或所有想法，在小公主的世界里都能找到它们的身影。',
+            link: 'http://www.tigerartstudio.cn/wechat/LittlePrincess_IWantAParty',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/IWantAParty.jpg',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364145&idx=1&sn=dac426b9969641a6f0f7bd2c1c4c7094&scene=23&srcid=0615tCDCqLXZapHfozg72Txy#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364282&idx=1&sn=eec174331c2fbd7a3840b8d3a41eca75&scene=23&srcid=0624aGtzyTSOtQOl2Rf8dDjh#rd';
             },
             cancel: function (res) {
                 //alert('已取消');

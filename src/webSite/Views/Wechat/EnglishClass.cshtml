@@ -8,11 +8,11 @@
 
     if (ViewData["enableRolling"].ToString() == "true")
     {
-        message = new HtmlString(string.Format("<div style='font - family: KaiTi; font - size: smaller; color: darkcyan; margin - bottom:10px; height: 185px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 185px; ' scrollamount=1>{0}</marquee></div>", Model.Description));
+        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 65px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 65px; ' scrollamount=1>{0}</marquee></div>", Model.Description));
     }
     else
     {
-        message = new HtmlString(string.Format("<div style='font - family: KaiTi; font - size: smaller; color: darkcyan; margin - bottom:10px; height: 185px; overflow: auto'>{0}</div>", Model.Description));
+        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 65px; overflow: auto'>{0}</div>", Model.Description));
     }
 }
 
@@ -54,17 +54,18 @@
 <body>
     <div id="jp_container_1" style="margin-left: 2px; height: 100%" class="jp-video jp-video-270p" role="application" aria-label="media player">
         <div class="jp-type-playlist">
-            <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).jpg" style="height: 220px; max-width: 98%; display: block;margin: 0 auto;">
+            <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).jpg" style="height: 220px; max-width: 98%; display: block;margin: 0 auto;">
 
-            <audio style="width: 98%; margin: 3px 5px 3px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).mp3" controls autoplay loop>
+            <audio style="width: 98%; margin: 3px 5px 3px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).mp3" controls autoplay loop>
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
             @Html.Raw(message)
+            <div class="alert alert-danger" style="font-size: smaller; margin-bottom: 0px" role="alert">老虎工作室父母课堂音频版权归老虎工作室所有。本课件仅供个人学习交流使用，不可随意分享，不得用于任何商业用途。任何滥用老虎工作室父母课堂音频的行为，老虎工作室将追究其法律责任，维权到底！</div>
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
                 @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">我要买书</a>*@
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90&wfr=qfriend" class="btn btn-primary btn-lg active" role="button">精品童书</a>
-                @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary btn-lg active free-btn" role="button">精彩文章</a>*@
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd" class="btn btn-primary btn-lg active free-btn" role="button">我要报名</a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90&wfr=qfriend" class="btn btn-primary btn-lg active" role="button">暑期特价 <span class="badge">4</span></a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary btn-lg active free-btn" role="button">精彩文章 <span class="badge">3</span></a>
+                @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd" class="btn btn-primary btn-lg active free-btn" role="button">我要报名</a>*@
                 @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=23&srcid=0613I31UiwB1zWO3cvP7vMkt#rd" class="btn btn-primary btn-lg active free-btn" role="button">加入我们</a>*@
             </div>
         </div>
@@ -102,16 +103,20 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '@Html.Raw(Model.Title)',
+            @*title: '@Html.Raw(Model.Title)',
             desc: '@Html.Raw(Model.Description)',
             link: '@Model.Url',
-            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).jpg',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).jpg',*@
+            title: '【我要报名】与牛津阅读树齐名的顶级美式英语分级读物 | 兰登1-3阶公益贴心伴读计划',
+            desc: '通过听、说、读、唱等多种语音形式的练习，让孩子具备基本的听说能力，更为重要的是潜移默化地培养了孩子的英文好感度，阅读从此成为一种游戏。',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/StepIntoReading/brand.gif',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364570&idx=1&sn=b1baf95811e568df64db499f87bdc25a&scene=23&srcid=0711cBP5q8XPd8wc7Y0zBGbV#rd';
             },
             cancel: function (res) {
                 //alert('已取消');

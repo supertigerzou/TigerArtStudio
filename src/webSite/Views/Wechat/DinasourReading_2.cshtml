@@ -1,7 +1,7 @@
 ﻿@model JSSDKViewModel
 @using Microsoft.AspNet.Http.Authentication
 @{
-    ViewData["Title"] = "♬【伴读试听】《小公主》第20集 - I Don't Want to Go to Hospital!";
+    ViewData["Title"] = "♪《恐龙来了》第二集 - 双嵴龙和它的伙伴们（最残暴、最凶猛的食肉动物）";
     Layout = null;
 }
 
@@ -12,32 +12,30 @@
     <title>@ViewData["Title"]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/story.css" />
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css" />
-    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+    <link href="../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday_1.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../lib/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
-    <script type="text/javascript" src="../lib/jplayer/dist/add-on/jplayer.playlist.min.js"></script>
 </head>
 <body>
-    <div id="jp_container_1" style="margin-left: 20px" class="jp-video jp-video-270p" role="application" aria-label="media player">
+    <div id="jp_container_1" style="margin-left: 2px" class="jp-video jp-video-270p" role="application" aria-label="media player">
         <div class="jp-type-playlist">
-            <img src="http://www.tigerartstudio.cn/mediaFiles/books1/IDontWantToGoToHospital.jpg" style="width: 300px; height: 327px; display: inline;margin-left:5px">
+            <img src="http://www.tigerartstudio.cn/mediaFiles/books1/dinasour_7.jpg" style="width: 98%; display: inline;margin-left:3px">
 
-            <audio style="width: 300px; margin: 0px 5px 0px 5px" src="http://www.tigerartstudio.cn/mediaFiles/books1/IDontWantToGoToHospital.mp3" controls autoplay loop>
+            <audio style="margin: 10px 5px 10px 3px; width: 98%" src="http://www.tigerartstudio.cn/mediaFiles/books1/dinasour_7.mp3" controls autoplay loop>
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
-
-            <div style="font-family: KaiTi; font-size: small; color:black;">
-                「Brown Bear Collection」 & 「The Little Princess's Big Bookshelf」火热团购中，点击左下角的<b>原版进口</b>了解详情，点击右下角的<b>配套课程</b>报名老虎工作室为孩子量身定做的英文伴读课程。
+            <div style="font-family: Tahoma; font-size: small; color:black;margin-bottom:10px">
+                双嵴龙的身体较为粗壮，头骨高大，颚骨发达，嘴裂非常大，满嘴的牙齿就像锋利的小刀子一样，牙齿的前后边缘上还有小的锯齿，这些特征显示它可以撕碎任何捕获到的猎物，然后将大块的肉吞进腹中。
+            </div>
+            <div style="font-family: Tahoma; font-size: small; color:blue;">
+                暑期特价童书团购火热进行中，本故事配套书籍也在其中，赶紧点击左下方的<span style="font-weight:bold; font-size:medium; color:red">暑期特价</span>按钮了解详情。
             </div>
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">配套书籍</a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364238&idx=2&sn=27bc63b28b0050f136d91cfda9f47a86&scene=23&srcid=0619bDRLHg57t2zmDBaaq496#rd" class="btn btn-primary btn-lg active free-btn" role="button">配套课程</a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90" class="btn btn-primary btn-lg active" role="button">暑期特价</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd" class="btn btn-primary btn-lg active free-btn" role="button">精彩课程</a>
             </div>
         </div>
     </div>
-    <div class="shade"></div>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
@@ -70,16 +68,16 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '♬【伴读试听】《小公主》第20集 - I Don\'t Want to Go to Hospital!',
-            desc: '初看小公主，她相貌平平，衣着朴素，平淡无奇，甚至可以说有点丑陋，她有着同年龄阶段孩子的天真和任性，孩子们身上能发生的所有事情或所有想法，在小公主的世界里都能找到它们的身影。',
-            link: 'http://www.tigerartstudio.cn/wechat/LittlePrincess_IDontWantToGoToHospital',
-            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/IDontWantToGoToHospital.jpg',
+            title: '♪《恐龙来了》第二集 - 双嵴龙和它的伙伴们（最残暴、最凶猛的食肉动物）',
+            desc: '《恐龙来了》不仅拥有最权威的恐龙百科知识、最齐全的恐龙品种展示、最真实的恐龙生活全景、最震撼的恐龙生活图画，随书还超值附赠大型恐龙奇趣探险棋、恐龙地板触摸认知图、百变炫酷恐龙游戏卡牌20张、动手剪裁人物棋子36枚、数字骰子等。多重智力开发游戏，不仅让孩子获得身临其境的恐龙探寻感受，还能培养孩子认知和动手能力。孩子们最渴望的恐龙活动全景，家长们最期盼的恐龙百科知识，尽在《恐龙来了》！',
+            link: 'http://www.tigerartstudio.cn/wechat/dinasourreading_2',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/dinasour_7.jpg',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364238&idx=2&sn=27bc63b28b0050f136d91cfda9f47a86&scene=23&srcid=0619bDRLHg57t2zmDBaaq496#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364570&idx=1&sn=b1baf95811e568df64db499f87bdc25a&scene=23&srcid=0711cBP5q8XPd8wc7Y0zBGbV#rd';
             },
             cancel: function (res) {
                 //alert('已取消');
