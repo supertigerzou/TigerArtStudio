@@ -8,11 +8,11 @@
 
     if (ViewData["enableRolling"].ToString() == "true")
     {
-        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 65px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 65px; ' scrollamount=1>{0}</marquee></div>", Model.Description));
+        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: small; color: darkcyan; margin-bottom:10px; padding-left: 15px; padding-right: 15px; max-height: 79px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 79px' scrollamount=1>{0}</marquee></div>", Model.Description));
     }
     else
     {
-        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 65px; overflow: auto'>{0}</div>", Model.Description));
+        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: small; color: darkcyan; margin-bottom:10px; padding-left: 15px; padding-right: 15px; max-height: 79px; overflow: auto'>{0}</div>", Model.Description));
     }
 }
 
@@ -27,50 +27,785 @@
     <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css" />
     <link href="../../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday_1.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../lib/jquery/dist/jquery.min.js"></script>
-    @*<script type="text/javascript">
-            //<![CDATA[
-            $(document).ready(function () {
-
-                $(".free-btn").bind("click", function() {
-                    $(".main-bg").css("-webkit-filter", "blur(10px)");
-                    $(".shade").show();
-                });
-
-            });
-            //]]>
-        </script>*@
-    @*<style type="text/css">
-        .shade {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url(../images/OxfordLevel0_small.png) 10px top no-repeat rgba(0,0,0,0.5);
-            display: none;
-        }
-    </style>*@
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="jp_container_1" style="margin-left: 2px; height: 100%" class="jp-video jp-video-270p" role="application" aria-label="media player">
         <div class="jp-type-playlist">
-            <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).jpg" style="height: 220px; max-width: 98%; display: block;margin: 0 auto;">
-
-            <audio style="width: 98%; margin: 3px 5px 3px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).mp3" controls autoplay loop>
-                <p>Your browser does not support the <code>audio</code> element </p>
-            </audio>
+            @if (Model.InsidePagePictures != null)
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        @for (int i=0; i < Model.InsidePagePictures.Count(); i++)
+                        {
+                            if (i == 0)
+                            {
+                                <div class="item active">
+                                    <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                        <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@Model.InsidePagePictures[i]" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                        <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@Model.InsidePagePictures[i]" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_ILikeStars")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ILikeStars_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ILikeStars_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ILikeStars_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID.Contains("ElmerOnStilts_"))
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ElmerOnStilts_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ElmerOnStilts_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ElmerOnStilts_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_ILikeBugs")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ILikeBugs_1.png" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ILikeBugs_2.png" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/ILikeBugs_3.png" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_Wheels")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Wheels_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Wheels_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Wheels_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_Boats")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Boats_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Boats_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Boats_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_TooManyCats")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_TooManyCats_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_TooManyCats_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_TooManyCats_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_TooManyDogs")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_TooManyDogs_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_TooManyDogs_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_TooManyDogs_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_HotDog")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_HotDog_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_HotDog_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_HotDog_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_HogAndDog")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_HogAndDog_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_HogAndDog_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_HogAndDog_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_JackAndJill")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_JackAndJill_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_JackAndJill_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_JackAndJill_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_DragonEgg")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DragonEgg_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DragonEgg_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DragonEgg_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_WatchYourStep")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_WatchYourStep_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_WatchYourStep_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_WatchYourStep_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_BigEgg")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_BigEgg_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_BigEgg_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_BigEgg_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_DancingDinos")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DancingDinos_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DancingDinos_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DancingDinos_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_LionAndMouse")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_LionAndMouse_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_LionAndMouse_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_LionAndMouse_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_DinosGotoSchool")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DinosGotoSchool_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DinosGotoSchool_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_DinosGotoSchool_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "StepIntoReading_Sunshine")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Sunshine_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Sunshine_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/StepIntoReading_Sunshine_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID.Contains("Elmer_ElmerAndRose_"))
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer_ElmerAndRose_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer_ElmerAndRose_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer_ElmerAndRose_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID.Contains("Elmer_ElmerAndGrandpaEldo_"))
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer_ElmerAndGrandpaEldo_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer_ElmerAndGrandpaEldo_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer_ElmerAndGrandpaEldo_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "PeppaPig3_PeppaGoesSwimming")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/PeppaPig3_PeppaGoesSwimming_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/PeppaPig3_PeppaGoesSwimming_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "PeppaPig3_PeppaGlasses")
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/PeppaPig3_PeppaGlasses_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/PeppaPig3_PeppaGlasses_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID.StartsWith("Biscuit_"))
+            {
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" style="width: 98%; height: 215px; display: block;margin: 0 auto;">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Biscuit_Biscuit_1.jpg" alt="" class="img-responsive" style="height:215px;display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Biscuit_Biscuit_2.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Biscuit_Biscuit_3.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd">
+                                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Biscuit_Biscuit_4.jpg" alt="" class="img-responsive" style="height: 215px; display: block;margin: 0 auto;" />
+                            </a>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            else if (Model.ID == "MotherGoose_SooFlyDontBotherMe")
+            {
+                <iframe frameborder="0" style="height: 210px; display: block;margin: 0 auto;" src="http://player.youku.com/embed/XOTMzNDkxMjA0" allowfullscreen></iframe>
+            }
+            else if (Model.ID == "CC_Math_Clock")
+            {
+                <iframe frameborder="0" style="height: 250px; display: block;margin: 0 auto;" src="http://v.qq.com/iframe/player.html?vid=f0323ryo76c&tiny=0&auto=0" allowfullscreen></iframe>
+            }
+            else if (Model.ID == "CC_Math_Pattern")
+            {
+                <iframe frameborder="0" style="height: 250px; display: block;margin: 0 auto;" src="http://v.qq.com/iframe/player.html?vid=f03248phi70&tiny=0&auto=0" allowfullscreen></iframe>
+            }
+            else if (Model.ID == "CC_Math_KnowingNumber")
+            {
+                <iframe frameborder="0" style="height: 250px; display: block;margin: 0 auto;" src="http://v.qq.com/iframe/player.html?vid=u0325ya3e5o&tiny=0&auto=0" allowfullscreen></iframe>
+            }
+            else if (Model.ID == "CC_Math_Measure")
+            {
+                <iframe frameborder="0" style="height: 250px; display: block;margin: 0 auto;" src="http://v.qq.com/iframe/player.html?vid=y0325m2sgyg&tiny=0&auto=0" allowfullscreen></iframe>
+            }
+            else if (Model.ID == "CC_Math_SingleDoubleNumber")
+            {
+                <iframe frameborder="0" style="height: 250px; display: block;margin: 0 auto;" src="http://v.qq.com/iframe/player.html?vid=m03267qhjad&tiny=0&auto=0" allowfullscreen></iframe>
+            }
+            else
+            {
+                <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).jpg" style="height: 210px; max-width: 98%; display: block;margin: 0 auto;">
+            }
+            @if (ViewData["disableAudio"].ToString() != "true")
+            {
+                <audio style="width: 98%; margin: 3px 5px 3px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).mp3" controls autoplay loop>
+                    <p>Your browser does not support the <code>audio</code> element </p>
+                </audio>
+            }
+            else
+            {
+                <div class="seperateLine"></div>
+            }
             @Html.Raw(message)
-            <div class="alert alert-danger" style="font-size: smaller; margin-bottom: 0px" role="alert">老虎工作室父母课堂音频版权归老虎工作室所有。本课件仅供个人学习交流使用，不可随意分享，不得用于任何商业用途。任何滥用老虎工作室父母课堂音频的行为，老虎工作室将追究其法律责任，维权到底！</div>
-            <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">我要买书</a>*@
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90&wfr=qfriend" class="btn btn-primary btn-lg active" role="button">暑期特价 <span class="badge">4</span></a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary btn-lg active free-btn" role="button">精彩文章 <span class="badge">3</span></a>
-                @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd" class="btn btn-primary btn-lg active free-btn" role="button">我要报名</a>*@
-                @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=23&srcid=0613I31UiwB1zWO3cvP7vMkt#rd" class="btn btn-primary btn-lg active free-btn" role="button">加入我们</a>*@
+            @if (ViewData["sharable"].ToString() == "true")
+            {
+                <div class="alert alert-success" style="font-size: small; margin-bottom: 0px; padding-bottom: 5px; padding-top: 5px" role="alert">老虎工作室的英文伴读课程主要针对父母和孩子在英语启蒙、亲子阅读过程中的诸多疑问和困难，将绘本书面内容、延伸内容、互动方法以及语言点等知识，以各种活泼生动的方式展现，鼓励父母陪伴孩子共同学习。</div>
+            }
+            else
+            {
+                <div class="alert alert-danger" style="font-size: small; margin-bottom: 0px; padding-bottom: 5px; padding-top: 5px" role="alert"><a href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=23&srcid=0723ZphIU0kCKG1uCOwbWaxQ#rd">老虎工作室</a>父母课堂音频版权归老虎工作室所有。本课件仅供个人学习交流使用，不可随意分享，不得用于任何商业用途。任何滥用本音频的行为，将被追究法律责任，我们会维权到底！</div>
+            }
+            @if (ViewData["viponly"].ToString() == "true")
+            {
+                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">《黑猫警长·大闹天宫》，上海美影官方授权、镇厂之宝，高清原图完美呈现，权威推荐的大开本全彩完整版，荣获百花奖等多项国内外大奖，值得永久珍藏！点击左下角按钮<span style="color:deeppink; font-weight:bold">暑期特价</span>了解详情，点击右下角按钮<span style="color:deeppink; font-weight:bold">我要报名</span>参加老虎工作室的其他精彩课程。</marquee>
+            }
+            else if (ViewData["viponly"].ToString() == "disable") { }
+            else if (Model.ID.Contains("MotherGoose_"))
+            {
+                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">本课件有效期截止<span style="color:red; font-weight:bold">9/25</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">14次</span>即可顺利毕业获赠伴读音频。会员无须打卡，可以直接领取伴读课程包，发送<span style="color:deeppink; font-weight:bold">会员</span>到微信公众号“老虎工作室”了解详情。</marquee>
+            }
+            else if (Model.ID.Contains("CC_Math_"))
+            {
+                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">本课件有效期截止<span style="color:red; font-weight:bold">9/12</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">5次</span>即可顺利毕业获赠伴读视频。会员无须打卡，可以直接领取伴读课程包，发送<span style="color:deeppink; font-weight:bold">会员</span>到微信公众号“老虎工作室”了解详情。</marquee>
+            }
+            else if (Model.ID.Contains("PeppaPig3_"))
+            {
+                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">本课件有效期截止<span style="color:red; font-weight:bold">10/23</span>,如需领取基础课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">7次</span>即可顺利毕业获赠伴读音频。会员无须打卡，可以直接领取伴读课程包，发送<span style="color:deeppink; font-weight:bold">会员</span>到微信公众号“老虎工作室”了解详情。</marquee>
+            }
+            else
+            {
+                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">本课件有效期截止<span style="color:red; font-weight:bold">9/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">16次</span>即可顺利毕业获赠伴读音频。会员无须打卡，可以直接领取伴读课程包，点击下方<span style="color:deeppink; font-weight:bold">加入会员</span>按钮了解详情。</marquee>
+            }
+            <div style="height: 45px; margin-top: 0px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary active" role="button">原版进口 <span class="badge">@(new Random().Next(1, 8))</span></a>*@
+                <a style="float: left; margin-left: 12px" href="https://weidian.com/?userid=251230088" class="btn btn-primary active" role="button">老虎书店 <span class="badge">@(new Random().Next(1, 8))</span></a>
+                @if (ViewData["viponly"].ToString() == "true")
+                {
+                    <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary active" role="button">精彩文章 <span class="badge">@(new Random().Next(1, 6))</span></a>
+                    @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364991&idx=2&sn=2a63bb2ea57dc6f5af7556c16e1fe7aa&scene=23&srcid=0807jer6rXaJMHPuRNXjHpl0#rd" class="btn btn-primary active" role="button">我要报名 <span class="badge">@(new Random().Next(2000, 4000))</span></a>*@
+                }
+                else
+                {
+                    <a style="float: right; margin-right: 12px" href="http://weidian.com/item.html?itemID=1746093768" class="btn btn-primary active" role="button">加入会员 <span class="badge">@(new Random().Next(3300, 3400))</span></a>
+                    @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=402601179&idx=1&sn=2cfb5a70504b29d20e73ea669a32029e&scene=1&srcid=0816XOdVHwAEMThJV1kYS03g#rd" class="btn btn-primary active" role="button">精彩课程 <span class="badge">@(new Random().Next(2, 4))</span></a>*@
+                }
+                @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=23&srcid=0613I31UiwB1zWO3cvP7vMkt#rd" class="btn btn-primary btn-lg active" role="button">加入我们</a>*@
             </div>
         </div>
     </div>
-    <div class="shade"></div>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
@@ -103,25 +838,41 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            @*title: '@Html.Raw(Model.Title)',
-            desc: '@Html.Raw(Model.Description)',
-            link: '@Model.Url',
-            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).jpg',*@
-            title: '【我要报名】与牛津阅读树齐名的顶级美式英语分级读物 | 兰登1-3阶公益贴心伴读计划',
-            desc: '通过听、说、读、唱等多种语音形式的练习，让孩子具备基本的听说能力，更为重要的是潜移默化地培养了孩子的英文好感度，阅读从此成为一种游戏。',
-            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd',
-            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/StepIntoReading/brand.gif',
+            title: '【我要报名】100周不间断教唱，玩转鹅妈妈童谣 | 英语启蒙、情商启蒙、认知及身体发展全面培养',
+            desc: '',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364991&idx=2&sn=2a63bb2ea57dc6f5af7556c16e1fe7aa&scene=23&srcid=0807jer6rXaJMHPuRNXjHpl0#rd',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MotherGoose/MotherGoose.png',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364570&idx=1&sn=b1baf95811e568df64db499f87bdc25a&scene=23&srcid=0711cBP5q8XPd8wc7Y0zBGbV#rd';
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
             },
             cancel: function (res) {
                 //alert('已取消');
             },
             fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Html.Raw(Model.WechatTitle)',
+            desc: '@Html.Raw(Model.WechatDescription)',
+            link: '@Html.Raw(Model.WechatUrl)',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).jpg',
+            trigger: function(res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function(res) {
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
+            },
+            cancel: function(res) {
+                //alert('已取消');
+            },
+            fail: function(res) {
                 alert(JSON.stringify(res));
             }
         });

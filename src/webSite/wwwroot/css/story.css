@@ -12,6 +12,14 @@
 	background-size: contain;
 }
 
+.seperateLine {
+ height:1px;
+ margin-top: 5px;
+ width:100%;
+ background:#00CCFF;
+ overflow:hidden;
+ }
+
 
 
 

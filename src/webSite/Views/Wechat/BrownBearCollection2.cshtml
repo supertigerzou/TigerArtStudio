@@ -8,11 +8,11 @@
 
     if (ViewData["enableRolling"].ToString() == "true")
     {
-        message = new HtmlString(string.Format("<div style='font - family: KaiTi; font - size: smaller; color: darkcyan; margin - bottom:10px; height: 155px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 155px; ' scrollamount=1>{0}</marquee></div>", Model.Description));
+        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 155px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 155px; ' scrollamount=1>{0}</marquee></div>", Model.Description));
     }
     else
     {
-        message = new HtmlString(string.Format("<div style='font - family: KaiTi; font - size: smaller; color: darkcyan; margin - bottom:10px; height: 155px; overflow: auto'>{0}</div>", Model.Description));
+        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 155px; overflow: auto'>{0}</div>", Model.Description));
     }
 }
 
@@ -61,9 +61,9 @@
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
             @Html.Raw(message)
-            <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90&wfr=qfriend" class="btn btn-primary btn-lg active" role="button">精品童书</a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary btn-lg active free-btn" role="button">精彩文章</a>
+            <div style="height: 45px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary active" role="button">原版进口 <span class="badge">@(new Random().Next(1, 8))</span></a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=402601179&idx=1&sn=2cfb5a70504b29d20e73ea669a32029e&scene=1&srcid=0816XOdVHwAEMThJV1kYS03g#rd" class="btn btn-primary active free-btn" role="button">精彩课程 <span class="badge">@(new Random().Next(2, 5))</span></a>
             </div>
         </div>
     </div>
@@ -109,7 +109,7 @@
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364353&idx=3&sn=02fa13bdf97b4310097a7983244dcc09&scene=23&srcid=0629zX6R4DHSnPMFbn7hL4HV#rd';
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
             },
             cancel: function (res) {
                 //alert('已取消');

@@ -212,7 +212,7 @@ footer .btn-more {
 
 .list-album .pic {
     width: 65px;
-    height: 65px;
+    /*height: 65px;*/
 }
 
 .list-album .info {

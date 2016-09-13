@@ -62,5 +62,6 @@ namespace webSite.Models
         public string Title { get; set; }
         public string Type { get; set; }
         public string AudioName { get; set; }
+        public string InsidePagePictures { get; set; }
     }
 }

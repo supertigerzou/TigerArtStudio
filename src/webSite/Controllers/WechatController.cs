@@ -30,6 +30,12 @@ namespace TigerStudio.Wechat.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ClassExpired()
+        {
+            return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
         public async Task<IActionResult> MorningNightSharing(string id)
         {
             ViewData["enableRolling"] = Request.Query["enableRolling"].ToString();
@@ -49,15 +55,63 @@ namespace TigerStudio.Wechat.Controllers
         public async Task<IActionResult> EnglishClass(string id)
         {
             ViewData["enableRolling"] = Request.Query["enableRolling"].ToString();
+            ViewData["sharable"] = Request.Query["sharable"].ToString();
+            ViewData["viponly"] = Request.Query["viponly"].ToString();
+            ViewData["disableAudio"] = Request.Query["disableAudio"].ToString();
             var matchedItem = _context.MorningNightSharings.First<MorningNightSharing>(mns =>
-                mns.Type == "EnglishClass" && mns.AudioName == id
+                (mns.Type == "EnglishClass" || mns.Type == "ParentClass" || mns.Type == "ChildClass") && mns.AudioName == id
             );
             JSSDKViewModel viewModel = await ConstructJSSDKViewModel();
             viewModel.ID = matchedItem.AudioName;
             viewModel.Author = matchedItem.Author;
             viewModel.Description = matchedItem.Description;
             viewModel.Title = matchedItem.Title;
+            viewModel.InsidePagePictures = matchedItem.InsidePagePictures == null ? null : matchedItem.InsidePagePictures.Split(',');
 
+            if (Request.Query["enableSharing"].ToString() == "true")
+            {
+                viewModel.WechatUrl = viewModel.Url.Replace("enableSharing=true", "enableSharing=false");
+                viewModel.WechatTitle = viewModel.Title;
+                viewModel.WechatDescription = viewModel.Description;
+                viewModel.WechatImgUrl = viewModel.ImgUrl;
+
+                if (id.Contains("StepIntoReading_"))
+                {
+                    viewModel.WechatDescription = "每一个级别都为不同阅读能力的孩子设置了适合其应对的小挑战，这让每个孩子都能从阅读中获得快乐并保持良好的信心。";
+                }
+                else if (id.Contains("Oxford_"))
+                {
+                    viewModel.WechatDescription = "通过专业的英语教学设计，整套书特别容易引发孩子的学习兴趣，好看好玩又学得容易，所以使得Oxford Reading Tree《牛津阅读树》成为了全球风靡的英语分级阅读教材。";
+                }
+                else if (id.Contains("MotherGoose_"))
+                {
+                    viewModel.WechatDescription = "有了语感，才能把学过的一颗颗漂亮的珍珠串起来，变成美丽的珍珠项链。光有珍珠没有线，那只能算是一盘散沙而已。";
+                }
+                else if (id.Contains("CC_Math_"))
+                {
+                    viewModel.WechatDescription = "孩子们最初都是通过数数学习数学的。物品的数量有几个？自己的家在几楼？爸爸妈妈的手机号码是多少等等，孩子们很自然地接触到各种数。";
+                }
+                else if (id.Contains("PeppaPig3_"))
+                {
+                    viewModel.WechatDescription = "不少父母虽然有心教孩子英语，却苦于自己发音不准，怕误导了孩子。很多妈妈说孩子不爱看英文书，因为对孩子来说，英文就是一门他们听不懂的语言，人天生都是畏难的，自己不懂的东西就不自主地想逃避。";
+                }
+                else if (id.Contains("Biscuit_"))
+                {
+                    viewModel.WechatDescription = "小饼干的故事就是孩子们自己的故事，它讲述了孩子们在成长过程中的点点滴滴。文字朴实生动，平易近人；画面温馨可爱，极具亲和力。通过一个个充满生活气息的小故事，给孩子们展现了一个触手可及的小伙伴的形象。";
+                }
+            }
+            else
+            {
+                viewModel.WechatUrl = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364991&idx=2&sn=2a63bb2ea57dc6f5af7556c16e1fe7aa&scene=23&srcid=0807jer6rXaJMHPuRNXjHpl0#rd";
+                viewModel.WechatTitle = "【我要报名】100周不间断教唱，玩转鹅妈妈童谣 | 英语启蒙、情商启蒙、认知及身体发展全面培养";
+                viewModel.WechatDescription = "鹅妈妈是英美儿童朗朗上口、耳熟能详的童谣。它独特的声音趣味，入耳难忘，又容易念诵，因此，靠着口耳相传传诵许久。";
+                viewModel.WechatImgUrl = "https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MotherGoose/MotherGoose.png";
+            }
+
+            if ((new string[] { "Elmer_Elmer", "Elmer_ElmerInTheSnow_1", "Elmer_ElmerInTheSnow_2", "Elmer_ElmerAndTheStranger_1", "Elmer_ElmerAndTheStranger_2", "Elmer_ElmerAndTheLostTeddy_1", "Elmer_ElmerAndTheLostTeddy_2" }).Contains(id))
+            {
+                return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            }
             return View(viewModel);
         }
 
@@ -70,19 +124,19 @@ namespace TigerStudio.Wechat.Controllers
             switch (id)
             {
                 case "BrownBearClass1":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>今日课后互动时间欢迎小朋友踊跃参与，活动规则如下：选择本书中的一句完整的话练习熟练之后，在群中通过微信语音的方式念出来或唱出来，如 Yellow duck, yellow duck, What do you see? I see a blue horse looking at me. 大家尽量挑选不同的句子，这样我们有可能拼装出完整的段落。<br/><br/>我们会采集每一句讲得/唱得最好的一个声音用来制作特别电台节目并发布到微信公众号，系列课程全部结束之后我们也会挑选10位英文讲得最地道的孩子送出奖励。";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
                     viewModel.Title = "♪【边读边唱】Brown Bear, Brown Bear, What do you see?";
                     break;
                 case "BrownBearClass2":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>暑期特价书籍火热团购中，点击下方的<span style=\"color: red; font - weight:bold\">精品童书</span>按钮了解详情。";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
                     viewModel.Title = "♪【边玩边学】Brown Bear, Brown Bear, What do you see?";
                     break;
                 case "PandaBearClass1":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>今日课后互动时间欢迎小朋友踊跃参与，活动规则如下：选择本书中的一句完整的话练习熟练之后，在群中通过微信语音的方式念出来或唱出来，如 Yellow duck, yellow duck, What do you see? I see a blue horse looking at me. 大家尽量挑选不同的句子，这样我们有可能拼装出完整的段落。<br/><br/>我们会采集每一句讲得/唱得最好的一个声音用来制作特别电台节目并发布到微信公众号，系列课程全部结束之后我们也会挑选10位表现最出色的孩子送出奖励。";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
                     viewModel.Title = "♪【伴读】Panda Bear第一课，进一步了解动物";
                     break;
                 case "PandaBearClass2":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>兰登英语88周陪伴阅读计划持续招募中，点击右下角的<span style=\"font-weight:bold; font-size:medium\">精彩课程</span>了解详情。";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
                     viewModel.Title = "♪【伴读】Panda Bear第二课，每一个孩子都是独一无二的，家长所能给予最好的是陪伴";
                     break;
                 case "PolarBear":
@@ -90,14 +144,14 @@ namespace TigerStudio.Wechat.Controllers
                     viewModel.Title = "♪【跟我唱】Polar Bear, Polar Bear, What do you hear?";
                     break;
                 case "BabyBearClass1":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>今日课后互动时间欢迎小朋友踊跃参与，活动规则如下：选择本书中的一句完整的话练习熟练之后，在群中通过微信语音的方式念出来或唱出来，如 Yellow duck, yellow duck, What do you see? I see a blue horse looking at me. 大家尽量挑选不同的句子，这样我们有可能拼装出完整的段落。<br/><br/>我们会采集每一句讲得/唱得最好的一个声音用来制作特别电台节目并发布到微信公众号，系列课程全部结束之后我们也会挑选10位英文讲得最地道的孩子送出奖励。";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
                     viewModel.Title = "♪【伴读】Baby Bear第一课，认识可爱的动物";
                     break;
                 case "BabyBearClass2":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>「<span style=\"color: red; font - weight:bold\">Step into Reading</span>」火热团购中，点击左下角的<b>原版进口</b>了解详情，点击右下角的<b>精彩课程</b>报名参与兰登88周阅读计划。";
-                    viewModel.Title = "♪【伴读试听】Baby Bear第二课，培养孩子的英文思维";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
+                    viewModel.Title = "♪【伴读】Baby Bear第二课，培养孩子的英文思维";
                     break;
-            }            
+            }
 
             return View(viewModel);
         }
@@ -119,12 +173,12 @@ namespace TigerStudio.Wechat.Controllers
                     viewModel.Title = "♪【跟我唱】Panda Bear, Panda Bear, What do you see?";
                     break;
                 case "PolarBearClass1":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>今日课后互动时间欢迎小朋友踊跃参与，活动规则如下：选择本书中的一句完整的话练习熟练之后，在群中通过微信语音的方式念出来或唱出来，如 Yellow duck, yellow duck, What do you see? I see a blue horse looking at me. 大家尽量挑选不同的句子，这样我们有可能拼装出完整的段落。<br/><br/>我们会采集每一句讲得/唱得最好的一个声音用来制作特别电台节目并发布到微信公众号，系列课程全部结束之后我们也会挑选10位表现最出色的孩子送出奖励。";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
                     viewModel.Title = "♪【伴读】Polar Bear第一课，跟着视频一起跳起来";
                     break;
                 case "PolarBearClass2":
-                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>暑期特价书籍火热团购中，点击下方的<span style=\"color: red; font - weight:bold\">精品童书</span>按钮了解详情。";
-                    viewModel.Title = "♪【伴读试听】Polar Bear第二课，寓教于乐、轻松培养孩子的英文好感度";
+                    viewModel.Description = "本课件有效期截止<span style=\"color: red; font - weight:bold\">9/20</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style=\"font - weight:bold\">签到流程</span>每次课后坚持打卡，满<span style=\"color: red; font - weight:bold\">8次</span>即可顺利毕业获赠伴读音频。<br/><br/>《Peppa Pig》粉红猪小妹全新第三辑火热抢购中，卡尔爷爷的《Brown Bear Collection》棕熊4册同步返场。点击左下角按钮<span style=\"color: deeppink; font - weight:bold\">原版进口</span>了解详情，点击右下角按钮<span style=\"color: deeppink; font - weight:bold\">精彩课程</span>参与老虎工作室的其他课程。";
+                    viewModel.Title = "♪【伴读】Polar Bear第二课，寓教于乐、轻松培养孩子的英文好感度";
                     break;
                 case "BabyBear":
                     viewModel.Description = "Baby Bear, Baby Bear, what do you see?<br/>小熊，小熊，你看到了什么？ <br/>I see a red fox slipping by me.<br/>我看到一头赤狐从我身边溜过。<br/><br/>Red Fox, Red Fox, what do you see?<br/>赤狐，赤狐，你看到了什么？<br/>I see a flying squirrel sliding by me.<br/>我看到一只鼯鼠从我身边滑过。<br/><br/>Flying Squirrel, Flying Squirrel, what do you see?<br/>鼯鼠，鼯鼠，你看到了什么？<br/>I see a mountain goat climbing near me.<br/>我看到一头山羊从我身旁攀过。<br/><br/>Mountain Goat, Mountain Goat, what do you see?<br/>山羊，山羊，你看到了什么？<br/>I see a blue heron flying by me.<br/>我看到一只蓝鹭从我身边飞过。<br/><br/>Blue Heron, Blue Heron, what do you see?<br/>蓝鹭，蓝鹭，你看到了什么？<br/>I see a prairie dog digging by me.<br/>我看到一只草原犬鼠在我身边挖洞。<br/><br/>Prairie Dog, Prairie Dog, what do you see?<br/>犬鼠，犬鼠，你看到了什么？<br/>I see a striped skunk strutting by me.<br/>我看到一只条纹臭鼬大摇大摆地从我身边走过。<br/><br/>Striped Skunk, Striped Skunk, what do you see?<br/>臭鼬，臭鼬，你看到了什么？<br/>I see a mule deer running by me.<br/>我看到一头长耳鹿从我身边跑过。<br/><br/>Mule Deer, Mule Deer, what do you see?<br/>长耳鹿，长耳鹿，你看到了什么？<br/>I see a rattlesnake sliding by me.<br/>我看到一条响尾蛇从我身边爬过。<br/><br/>Rattlesnake, Rattlesnake, what do you see?<br/>响尾蛇，响尾蛇，你看到了什么？<br/>I see a screech owl hooting at me.<br/>我看到一只长耳鸮（xiao）对着我号叫。<br/><br/>Screech Owl, Screech Owl, what do you see?<br/>长耳鸮，长耳鸮，你看到了什么？<br/>I see a mama bear looking at me.<br/>我看到一头熊妈妈在看着我。<br/><br/>Mama Bear, Mama Bear, what do you see?<br/>熊妈妈，熊妈妈，你看到了什么？<br/>I see…<br/>我看到···<br/>a red fox, a flying squirrel, a mountain goat, a blue heron, a prairie dog, a striped skunk, a mule deer, a rattlesnake, a screech owl…my baby bear looking at me－that’s what I see!<br/>一头赤狐、一只鼯鼠、一头山羊、一只蓝鹭、一只草原犬鼠、一只条纹臭鼬、一头长耳鹿、一条响尾蛇、一只长耳鸮、还有我的熊宝宝在看着我···<br/>这就是我所看到的！";
@@ -145,7 +199,7 @@ namespace TigerStudio.Wechat.Controllers
                 case "TheABCsOfPhysics":
                     viewModel.Description = "克里斯·费利所著的《宝宝的物理学ABC》根据ABC……XYZ的次序将物理学中最基本的概念，如原子（Atom）、黑洞（BlackHole）、电荷（Charge）等等，通过生动有趣又浅显易懂的绘本形式传递给学龄前的孩子们，让孩子们在婴幼儿时期就早早感受到了科学的魅力。";
                     viewModel.Title = "♪【伴读试听】宝宝的物理学ABC，告诉你什么是原子（Atom）、黑洞（BlackHole）、电荷（Charge）";
-                    break; 
+                    break;
                 case "QuantumInformationForBabies":
                     viewModel.Description = "量子信息是现代物理学最前沿的内容之一，也是最热门的应用技术之一，量子密钥、量子计算机均是这一学科热门的研究课题。克里斯·费利所著的《宝宝的量子信息学》通过绘本的形式介绍量子信息学的基本内容，从计算机的比特开始，逐步介绍了量子比特的强大功能，展示了量子信息无法估量的应用前景。";
                     viewModel.Title = "♪【伴读试听】宝宝的量子信息学，量子密钥、量子计算机均是这一学科热门的研究课题";
@@ -179,6 +233,81 @@ namespace TigerStudio.Wechat.Controllers
         public async Task<IActionResult> BabyPhisicsIndex()
         {
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> BrownBear_Index()
+        {
+            JSSDKViewModel viewModel = await ConstructJSSDKViewModel();
+            if (Request.Query["enableSharing"].ToString() == "true")
+            {
+                viewModel.Url = "http://www.tigerartstudio.cn/wechat/BrownBear_Index";
+                viewModel.Title = "♪【课件合集】《棕熊4册》全8集";
+                viewModel.Description = "老虎工作室的英文伴读课不是普通的英语教学课，主要针对父母和孩子在英语启蒙、亲子阅读过程中诸多的疑问和困难，主播姐姐将绘本书面内容、延伸内容、互动方法以及语言点等知识，以各种活泼生动的方式展现，鼓励父母陪伴孩子共同学习，开启孩子的英文启蒙阅读之路。";
+                viewModel.ImgUrl = "http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/BrownBearCollection/BrownBear.jpg";
+            }
+            else
+            {
+                viewModel.Url = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652365189&idx=2&sn=e87248cbec96f6a56216b04739428be0&scene=1&srcid=0822HKyj82QOPzCs9tLr0NTo#rd";
+                viewModel.Title = "【我要报名】原版进口《粉红猪小妹》全程陪伴阅读，动画片辅助激发孩子的洪荒之力";
+                viewModel.Description = "老虎工作室的英文伴读课不是普通的英语教学课，主要针对父母和孩子在英语启蒙、亲子阅读过程中诸多的疑问和困难，主播姐姐将绘本书面内容、延伸内容、互动方法以及语言点等知识，以各种活泼生动的方式展现，鼓励父母陪伴孩子共同学习，开启孩子的英文启蒙阅读之路。";
+                viewModel.ImgUrl = "http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/PeppaPig.jpg";
+            }
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CalabashBrothers_Index()
+        {
+            JSSDKViewModel viewModel = await ConstructJSSDKViewModel();
+            viewModel.Url = "http://www.tigerartstudio.cn/wechat/CalabashBrothers_Index";
+            viewModel.Title = "♪《葫芦兄弟》全13集";
+            viewModel.Description = "在孩子未识字，需成人给孩子读书的阶段，“好阅读”尽量使用书面语，“坏阅读”则抛开书面文字大量使用口语。当我们不断用优质童书滋养孩子，孩子在阅读理解、速度与记忆方面也悄然积累，为将来的语文能力打下坚实基础。老虎工作室的中文伴读活动旨在为孩子们甄选好书，输送养分，从“量”与“质”方面去成就“好阅读”，逐步实现自主阅读。";
+            viewModel.ImgUrl = "http://www.tigerartstudio.cn/mediaFiles/CalabashBrothers/Episode7.png";
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_Level1_Index()
+        {
+            JSSDKViewModel viewModel = await ConstructJSSDKViewModel();
+            if (Request.Query["enableSharing"].ToString() == "true")
+            {
+                viewModel.Url = "http://www.tigerartstudio.cn/wechat/Oxford_Level1_Index";
+                viewModel.Title = "♪【课件合集】《牛津阅读树》第一阶段全18集";
+                viewModel.Description = "老虎工作室的英文伴读课不是普通的英语教学课，主要针对父母和孩子在英语启蒙、亲子阅读过程中诸多的疑问和困难，主播姐姐将绘本书面内容、延伸内容、互动方法以及语言点等知识，以各种活泼生动的方式展现，鼓励父母陪伴孩子共同学习，开启孩子的英文启蒙阅读之路。";
+                viewModel.ImgUrl = "http://www.tigerartstudio.cn/mediaFiles/books1/oxford.jpg";
+            }
+            else
+            {
+                viewModel.Url = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd";
+                viewModel.Title = "【我要报名】史上最贴心牛津阅读树公益伴读课程 | 覆盖1-6阶全部内容";
+                viewModel.Description = "通过专业的英语教学设计，整套书特别容易引发孩子的学习兴趣，好看好玩又学得容易，所以使得Oxford Reading Tree《牛津阅读树》成为了全球风靡的英语分级阅读教材。";
+                viewModel.ImgUrl = "http://www.tigerartstudio.cn/mediaFiles/books1/oxford.jpg";
+            }
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Elmer_Index()
+        {
+            JSSDKViewModel viewModel = await ConstructJSSDKViewModel();
+            if (Request.Query["enableSharing"].ToString() == "true")
+            {
+                viewModel.Url = "http://www.tigerartstudio.cn/wechat/Elmer_Index";
+                viewModel.Title = "♪【课件合集】《花格子大象艾玛》基础阶段全7集";
+                viewModel.Description = "老虎工作室的英文伴读课不是普通的英语教学课，主要针对父母和孩子在英语启蒙、亲子阅读过程中诸多的疑问和困难，主播姐姐将绘本书面内容、延伸内容、互动方法以及语言点等知识，以各种活泼生动的方式展现，鼓励父母陪伴孩子共同学习，开启孩子的英文启蒙阅读之路。";
+                viewModel.ImgUrl = "http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer.gif";
+            }
+            else
+            {
+                viewModel.Url = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=3&sn=9b96c5e830edea7cd69caa5c5cd1963b&scene=23&srcid=0724HKtDTEPeGf5nI1wfDnZr#rd";
+                viewModel.Title = "【我要报名】机灵活泼的可爱大象——艾玛来啦！奇趣冒险引发孩子内心最深层次的共鸣";
+                viewModel.Description = "老虎工作室的英文伴读课不是普通的英语教学课，主要针对父母和孩子在英语启蒙、亲子阅读过程中诸多的疑问和困难，主播姐姐将绘本书面内容、延伸内容、互动方法以及语言点等知识，以各种活泼生动的方式展现，鼓励父母陪伴孩子共同学习，开启孩子的英文启蒙阅读之路。";
+                viewModel.ImgUrl = "http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer.gif";
+            }
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -244,149 +373,257 @@ namespace TigerStudio.Wechat.Controllers
         [HttpGet]
         public async Task<IActionResult> Oxford_GetOn_FirstEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_GetOn_FirstEpisode_Preview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_GetOn_FirstEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_GetOn_SecondEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_GetOn_SecondEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_GetOn_SecondEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_FloppyDidThis_FirstEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_FloppyDidThis_FirstEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_FloppyDidThis_FirstEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_FloppyDidThis_SecondEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_FloppyDidThis_SecondEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_FloppyDidThis_SecondEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_KippersAlphabetISpy_FirstEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_KippersAlphabetISpy_FirstEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_KippersAlphabetISpy_FirstEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_KippersAlphabetISpy_SecondEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_KippersAlphabetISpy_SecondEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_KippersAlphabetISpy_SecondEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_ChipsLetterSounds_FirstEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_ChipsLetterSounds_FirstEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_ChipsLetterSounds_FirstEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_ChipsLetterSounds_SecondEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_ChipsLetterSounds_SecondEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_ChipsLetterSounds_SecondEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_UpYouGo()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_UpYouGoPreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_UpYouGo", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_FloppysFunPhonics()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_FloppysFunPhonicsPreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_FloppysFunPhonics", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_SixInABed()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_SixInABedPreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_SixInABed", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_BiffsWonderWords_FirstEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_BiffsWonderWords_FirstEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_BiffsWonderWords_FirstEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_BiffsWonderWords_SecondEpisode()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_BiffsWonderWords_SecondEpisodePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_BiffsWonderWords_SecondEpisode", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_ThePancake()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_ThePancakePreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_ThePancake", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_AGoodTrick()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_AGoodTrickPreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_AGoodTrick", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_BiffsFunPhonics()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_BiffsFunPhonicsPreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_BiffsFunPhonics", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_KippersRhymes()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_KippersRhymesPreview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_KippersRhymes", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> Oxford_KippersRhymes_2()
         {
+            return Redirect("http://www.tigerartstudio.cn/wechat/EnglishClass/OxfordLevel1End");
             return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Oxford_KippersRhymes_2Preview()
+        {
+            return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+            return View("Oxford_KippersRhymes_2", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
         public async Task<IActionResult> StepIntoReading_GradedReader()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> LittlePrincess_IWantMyPotty()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> LittlePrincess_IWantMyDummy()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> LittlePrincess_IWantAParty()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> LittlePrincess_IDontWantToGoToHospital()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> CalabashBrothers_AD()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> CalabashBrothers_1()
         {
             return View(await ConstructJSSDKViewModel());
         }
@@ -429,6 +666,42 @@ namespace TigerStudio.Wechat.Controllers
 
         [HttpGet]
         public async Task<IActionResult> CalabashBrothersReading_7()
+        {
+            return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CalabashBrothersReading_8()
+        {
+            return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CalabashBrothersReading_9()
+        {
+            return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CalabashBrothersReading_10()
+        {
+            return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CalabashBrothersReading_11()
+        {
+            return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CalabashBrothersReading_12()
+        {
+            return View(await ConstructJSSDKViewModel());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CalabashBrothersReading_13()
         {
             return View(await ConstructJSSDKViewModel());
         }
@@ -480,6 +753,8 @@ namespace TigerStudio.Wechat.Controllers
             }
             jsSDKViewModel.JsApiTicket = HttpRuntime.Cache.Get("JsApiTicket") as string;
             jsSDKViewModel.Signature = GenerateSignature(jsSDKViewModel);
+
+            jsSDKViewModel.JumpUrl = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652365388&idx=1&sn=2c2d162399bc5503472c2e970c778fa7&scene=21#wechat_redirect";
 
             return jsSDKViewModel;
         }

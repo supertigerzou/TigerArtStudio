@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>揭秘牛津阅读树里的人物性格及背景</title>
+    <title>♪【伴读】揭秘牛津阅读树里的人物性格及背景</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css" />
@@ -22,7 +22,7 @@
                     title: "揭秘牛津阅读树里的人物性格及背景",
                     artist: "月亮姐姐",
                     mp3: "http://www.tigerartstudio.cn/mediaFiles/CharactersInOxfordTree.mp3",
-                    poster: "http://www.tigerartstudio.cn/mediaFiles/CharactersInOxfordTree.png"
+                    poster: "http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/OxfordCharacters.jpg"
                 }
             ], {
                 swfPath: "../../dist/jplayer",
@@ -69,9 +69,9 @@
             <div style="font-family: Tahoma; font-size: small">
                 通过专业的英语教学设计，整套书特别容易引发孩子的学习兴趣，好看好玩又学得容易，所以使得Oxford Reading Tree《牛津阅读树》成为了全球风靡的英语分级阅读教材。
             </div>
-            <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&scene=18#wechat_redirect" class="btn btn-primary btn-lg active" role="button">加入我们</a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504879827&idx=2&sn=f8ddacef0f7745a923d267d8d7d90cbb&scene=23&srcid=0427XdTm544iV5rzNAFBnnxh#rd" class="btn btn-primary btn-lg active" role="button">立即报名</a>
+            <div style="height: 45px; margin-top: 0px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary active" role="button">配套书籍</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd" class="btn btn-primary active free-btn" role="button">我要报名</a>
             </div>
             <div class="jp-playlist">
                 <ul>
@@ -86,5 +86,75 @@
         </div>
     </div>
 </body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    /*
+     * 注意：
+     * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+     * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+     * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+     *
+     * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+     * 邮箱地址：weixin-open@qq.com
+     * 邮件主题：【微信JS-SDK反馈】具体问题
+     * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+     */
+    wx.config({
+        debug: false,
+        appId: 'wxf0aa207b2437d9bc',
+        timestamp: 1464483842,
+        nonceStr: 'alibaba',
+        signature: 'c8b753985d67e7ec26487b4a96756ecbb1af5d02',
+        jsApiList: [
+          // 所有要调用的 API 都要加到这个列表中
+          'checkJsApi',
+           'onMenuShareTimeline',
+           'onMenuShareAppMessage',
+           'showMenuItems',
+           'showOptionMenu'
+        ]
+    });
+    wx.ready(function () {
+        // 在这里调用 API
+        wx.onMenuShareTimeline({
+            title: '【我要报名】史上最贴心牛津阅读树公益伴读课程 | 覆盖1-6阶全部内容 ',
+            desc: '通过专业的英语教学设计，整套书特别容易引发孩子的学习兴趣，好看好玩又学得容易，所以使得Oxford Reading Tree《牛津阅读树》成为了全球风靡的英语分级阅读教材。',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/oxford.jpg',
+            trigger: function (res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function (res) {
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd';
+            },
+            cancel: function (res) {
+                //alert('已取消');
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
 
+        wx.onMenuShareAppMessage({
+            title: '♪【伴读】揭秘牛津阅读树里的人物性格及背景',
+            desc: '贯穿整个系列书的主人公 Biff, Chip, Kipper, Mum, 和 Dad，同时还有他们那条可爱的小狗 Floppy。牛津阅读树里的故事就是围绕着他们一家人和他们的朋友们展开的，介绍他们生活活动的方方面面：去游泳、去沙滩、堆雪人、小朋友一起玩各种游戏等等。',
+            link: 'http://www.tigerartstudio.cn/englishClasses/CharactersInOxfordTree.html',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/CharactersInOxfordTree.png',
+            trigger: function(res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function(res) {
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd';
+            },
+            cancel: function(res) {
+                //alert('已取消');
+            },
+            fail: function(res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    });
+</script>
 </html>

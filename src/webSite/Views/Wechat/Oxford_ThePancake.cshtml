@@ -1,7 +1,7 @@
 ﻿@model JSSDKViewModel
 @using Microsoft.AspNet.Http.Authentication
 @{
-    ViewData["Title"] = "♪【伴读试听】《牛津阅读树》第一阶段第十四课 - The Pancake";
+    ViewData["Title"] = "♪【伴读】《牛津阅读树》第一阶段第十四课 - The Pancake";
     Layout = null;
 }
 
@@ -81,13 +81,12 @@
                 <p>Your browser does not support the <code>audio</code> element </p>
             </audio>
 
-            <div style="font-family: KaiTi; font-size: medium; color:black;">
-                本课件有效期截止<span style="color:red; font-weight:bold">7/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">17次</span>即可顺利毕业获赠伴读音频。<br/><br/><span style="color:red; font-weight:bold">暑期特价童书专场</span>火热进行中，点击下方<span style="font-weight:bold;font-size:medium">精品童书</span>了解详情。
+            <div style="font-family: KaiTi; font-size: small; color:black;">
+                本课件有效期截止<span style="color:red; font-weight:bold">8/15</span>,如需领取第一阶段完整课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每日坚持打卡，满<span style="color:red; font-weight:bold">18次</span>即可顺利毕业获赠伴读音频。
             </div>
             <div style="height: 60px; margin-top: 10px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">原版进口</a>*@
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=%E7%B2%BE%E5%93%81%E6%8E%A8%E8%8D%90&wfr=qfriend" class="btn btn-primary btn-lg active" role="button">精品童书</a>
-                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=504880660&idx=3&sn=ca22d287fa28b708bee9e385ebf5237c&scene=23&srcid=0626gCmsjWydhVWr4FA3sVpS#rd" class="btn btn-primary btn-lg active free-btn" role="button">精品课程</a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary btn-lg active" role="button">原版进口 <span class="badge">@(new Random().Next(1, 10))</a>
+                <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364454&idx=2&sn=2f4fa1593241c7d93c0b2cb03cd96c8a&scene=23&srcid=0703tuKdvuWgv39t7SFs44Io#rd" class="btn btn-primary btn-lg active free-btn" role="button">我要报名</a>
             </div>
         </div>
     </div>
@@ -124,21 +123,41 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '♪【伴读试听】《牛津阅读树》第一阶段第十四课 - The Pancake',
+            title: '【我要报名】史上最贴心牛津阅读树公益伴读课程 | 覆盖1-6阶全部内容 ',
             desc: '通过专业的英语教学设计，整套书特别容易引发孩子的学习兴趣，好看好玩又学得容易，所以使得Oxford Reading Tree《牛津阅读树》成为了全球风靡的英语分级阅读教材。',
-            link: 'http://www.tigerartstudio.cn/wechat/Oxford_ThePancake',
-            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Oxford/ThePancake/ThePancake.png',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/oxford.jpg',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364363&idx=3&sn=187f26e232717c59de5402f0d7516b85&scene=23&srcid=0630CFJWWqoKYFXJY4GUm5BL#rd';
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd';
             },
             cancel: function (res) {
                 //alert('已取消');
             },
             fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '【我要报名】史上最贴心牛津阅读树公益伴读课程 | 覆盖1-6阶全部内容 ',
+            desc: '通过专业的英语教学设计，整套书特别容易引发孩子的学习兴趣，好看好玩又学得容易，所以使得Oxford Reading Tree《牛津阅读树》成为了全球风靡的英语分级阅读教材。',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd',
+            imgUrl: 'http://www.tigerartstudio.cn/mediaFiles/books1/oxford.jpg',
+            trigger: function(res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function(res) {
+                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364758&idx=2&sn=a140e7a15493776539ce8ae77e964d29&scene=23&srcid=0724leeqVI0zEZE1xSAaNoPr#rd';
+            },
+            cancel: function(res) {
+                //alert('已取消');
+            },
+            fail: function(res) {
                 alert(JSON.stringify(res));
             }
         });

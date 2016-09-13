@@ -102,7 +102,7 @@
                 //alert('用户点击发送给朋友');
             },
             success: function (res) {
-                window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364353&idx=3&sn=02fa13bdf97b4310097a7983244dcc09&scene=23&srcid=0629zX6R4DHSnPMFbn7hL4HV#rd';
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
             },
             cancel: function (res) {
                 //alert('已取消');

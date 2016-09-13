@@ -23,6 +23,20 @@ namespace webSite.ViewModels.Wechat
 
         public string Url { get; set; }
 
+        public string ImgUrl { get; set; }
+
         public string Signature { get; set; }
+
+        public string WechatDescription { get; set; }
+
+        public string WechatTitle { get; set; }
+
+        public string WechatUrl { get; set; }
+
+        public string WechatImgUrl { get; set; }
+
+        public string JumpUrl { get; set; }
+
+        public string[] InsidePagePictures { get; set; }
     }
 }
