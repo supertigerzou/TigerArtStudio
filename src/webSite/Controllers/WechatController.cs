@@ -10,6 +10,12 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Caching;
 using webSite.Models;
+using System.Diagnostics;
+using System.Web.Security;
+using System.IO;
+using System.Xml.Linq;
+using ifunction.WebChatApi.Contract;
+using System.Collections.Generic;
 
 namespace TigerStudio.Wechat.Controllers
 {
@@ -23,6 +29,7 @@ namespace TigerStudio.Wechat.Controllers
         private const string Token = "alibaba";
         private const string TokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxf0aa207b2437d9bc&secret=c1665fa38e6445c9d415c812bb0d61fc";
         private const string TicketUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi";
+        private const string JumpUrl = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652365720&idx=1&sn=905a4ca9dfd17dafd39e4e8e013e5d1e&scene=1&srcid=0920s27z9hqqbj6a9K5xOpsj#rd";
 
         public WechatController(ApplicationDbContext context)
         {
@@ -30,9 +37,11 @@ namespace TigerStudio.Wechat.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ClassExpired()
+        public async Task<IActionResult> ClassExpired(string id)
         {
-            return View(await ConstructJSSDKViewModel());
+            if (string.IsNullOrEmpty(id)) id = "General";
+
+            return View(id + "_Expired", await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
@@ -52,8 +61,39 @@ namespace TigerStudio.Wechat.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EnglishClass(string id)
+        public async Task<IActionResult> Courseware(string id)
         {
+            JSSDKViewModel viewModel = await ConstructJSSDKViewModel();
+            viewModel.Title = "《兰登英语》第一阶段基础课程";
+            viewModel.Description = "Step into Reading分为五个级别，循序渐进，由浅入深，内容涵盖经典故事、数学、生活、科普类等。全套书都是原汁原味的英语原版图书，书中用词地道，词汇丰富，插画漂亮，有助于提高孩子的英语阅读能力。每一个级别都为不同阅读能力的孩子设置了适合其应对的小挑战，这让每个孩子都能从阅读中获得快乐并保持良好的信心。";
+            viewModel.ImgUrl = "http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/StepIntoReading/StepIntoReading_s.png";
+
+            if (Request.Query["enableSharing"].ToString() == "true")
+            {
+                viewModel.WechatUrl = viewModel.Url.Replace("enableSharing=true", "enableSharing=false");
+                viewModel.WechatTitle = viewModel.Title;
+                viewModel.WechatDescription = viewModel.Description;
+                viewModel.WechatImgUrl = viewModel.ImgUrl;
+
+                if (id.StartsWith("StepIntoReading"))
+                {
+                    viewModel.WechatDescription = "每一个级别都为不同阅读能力的孩子设置了适合其应对的小挑战，这让每个孩子都能从阅读中获得快乐并保持良好的信心。";
+                }
+            }
+            else
+            {
+                viewModel.WechatUrl = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364991&idx=2&sn=2a63bb2ea57dc6f5af7556c16e1fe7aa&scene=23&srcid=0807jer6rXaJMHPuRNXjHpl0#rd";
+                viewModel.WechatTitle = "【我要报名】100周不间断教唱，玩转鹅妈妈童谣 | 英语启蒙、情商启蒙、认知及身体发展全面培养";
+                viewModel.WechatDescription = "鹅妈妈是英美儿童朗朗上口、耳熟能详的童谣。它独特的声音趣味，入耳难忘，又容易念诵，因此，靠着口耳相传传诵许久。";
+                viewModel.WechatImgUrl = "https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MotherGoose/MotherGoose.png";
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EnglishClass(string id)
+        {            
             ViewData["enableRolling"] = Request.Query["enableRolling"].ToString();
             ViewData["sharable"] = Request.Query["sharable"].ToString();
             ViewData["viponly"] = Request.Query["viponly"].ToString();
@@ -66,6 +106,7 @@ namespace TigerStudio.Wechat.Controllers
             viewModel.Author = matchedItem.Author;
             viewModel.Description = matchedItem.Description;
             viewModel.Title = matchedItem.Title;
+            viewModel.CreateDate = matchedItem.Date;
             viewModel.InsidePagePictures = matchedItem.InsidePagePictures == null ? null : matchedItem.InsidePagePictures.Split(',');
 
             if (Request.Query["enableSharing"].ToString() == "true")
@@ -99,6 +140,10 @@ namespace TigerStudio.Wechat.Controllers
                 {
                     viewModel.WechatDescription = "小饼干的故事就是孩子们自己的故事，它讲述了孩子们在成长过程中的点点滴滴。文字朴实生动，平易近人；画面温馨可爱，极具亲和力。通过一个个充满生活气息的小故事，给孩子们展现了一个触手可及的小伙伴的形象。";
                 }
+                else if (id.Contains("TheVery_"))
+                {
+                    viewModel.WechatDescription = "艾瑞卡尔的文笔带有诗趣，故事简洁轻快，每本书都有多重的内涵：趣味、想象、色彩、幽默……他的创作流露出童稚般的天真，表达出对自然的了解与关爱，也引导小朋友从身边的事物中学习。";
+                }
             }
             else
             {
@@ -108,9 +153,16 @@ namespace TigerStudio.Wechat.Controllers
                 viewModel.WechatImgUrl = "https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MotherGoose/MotherGoose.png";
             }
 
-            if ((new string[] { "Elmer_Elmer", "Elmer_ElmerInTheSnow_1", "Elmer_ElmerInTheSnow_2", "Elmer_ElmerAndTheStranger_1", "Elmer_ElmerAndTheStranger_2", "Elmer_ElmerAndTheLostTeddy_1", "Elmer_ElmerAndTheLostTeddy_2" }).Contains(id))
+            if (Request.Query["directAccess"].ToString() != "true")
             {
-                return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired");
+                if ((new string[] { "Elmer_Elmer", "Elmer_ElmerInTheSnow_1", "Elmer_ElmerInTheSnow_2", "Elmer_ElmerAndTheStranger_1", "Elmer_ElmerAndTheStranger_2", "Elmer_ElmerAndTheLostTeddy_1", "Elmer_ElmerAndTheLostTeddy_2" }).Contains(id))
+                {
+                    return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired/General");
+                }
+                else if (id.StartsWith("StepIntoReading_") && viewModel.CreateDate < DateTime.Parse("2016-09-15"))
+                {
+                    return Redirect("http://www.tigerartstudio.cn/wechat/ClassExpired/StepIntoReading");
+                }
             }
             return View(viewModel);
         }
@@ -308,42 +360,6 @@ namespace TigerStudio.Wechat.Controllers
                 viewModel.ImgUrl = "http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/Elmer.gif";
             }
             return View(viewModel);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> DinasourIsComing()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Dinasour_4()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Dinasour_5()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Dinasour_6()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> DinasourReading_1()
-        {
-            return View(await ConstructJSSDKViewModel());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> DinasourReading_2()
-        {
-            return View(await ConstructJSSDKViewModel());
         }
 
         [HttpGet]
@@ -754,7 +770,7 @@ namespace TigerStudio.Wechat.Controllers
             jsSDKViewModel.JsApiTicket = HttpRuntime.Cache.Get("JsApiTicket") as string;
             jsSDKViewModel.Signature = GenerateSignature(jsSDKViewModel);
 
-            jsSDKViewModel.JumpUrl = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652365388&idx=1&sn=2c2d162399bc5503472c2e970c778fa7&scene=21#wechat_redirect";
+            jsSDKViewModel.JumpUrl = JumpUrl;
 
             return jsSDKViewModel;
         }

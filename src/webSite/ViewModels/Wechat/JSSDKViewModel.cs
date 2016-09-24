@@ -38,5 +38,7 @@ namespace webSite.ViewModels.Wechat
         public string JumpUrl { get; set; }
 
         public string[] InsidePagePictures { get; set; }
+
+        public DateTime CreateDate { get; set; }
     }
 }

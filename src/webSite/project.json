@@ -38,7 +38,8 @@
   "frameworks": {
     "dnx451": {
       "dependencies": {
-        "Microsoft.Net.Http": "2.2.29"
+        "Microsoft.Net.Http": "2.2.29",
+        "WebChatApi.Contract": "1.0.0-*"
       },
       "frameworkAssemblies": {
         "System.Web": "4.0.0.0"

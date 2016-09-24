@@ -1,0 +1,110 @@
+﻿@model JSSDKViewModel
+@using Microsoft.AspNet.Http.Authentication
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>《兰登英语》团购即将开启</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/story_20160917_6.css" />
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="../../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday_1.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="jp_container_1" style="margin-left: 2px; height: 100%" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <img src="https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Schedule/StepIntoReading_1_Ex.jpg" style="height: 300px; max-width: 98%; display: block;margin: 0 auto;">
+
+            <div class="alert alert-danger" style="font-size: 12px; margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px; padding-top: 5px" role="alert">
+                您正在访问的课件已过期，课程音频文件会在一段时间后发布到会员资源区，会员家庭可以下载反复收听学习。<br/><br/>第一阶段延伸部分的课程正在会员群内进行，《兰登英语》1-3阶书籍团购周日晚8点准时开启。建议大家一次性收齐，下一次返场至少也是半年之后了。
+            </div>
+            <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">
+                <span style="color:red; font-weight:bold">9/18</span>晚8点开始接受新一轮报名,此次可以直接领取第一阶段基础课程的<span style="color:red; font-weight:bold">课件合集</span>，公众号将会在9/18晚发布最新的报名帖。
+</marquee>
+            <div style="height: 60px; margin-top: 0px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary active" role="button">参与团购 <span class="badge">@(new Random().Next(1, 8))</span></a>
+                <a style="float: right; margin-right: 12px" href="http://weidian.com/item.html?itemID=1746093768" class="btn btn-primary active free-btn" role="button">加入会员 <span class="badge">@(new Random().Next(2300, 2400))</span></a>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    /*
+     * 注意：
+     * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+     * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+     * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+     *
+     * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+     * 邮箱地址：weixin-open@qq.com
+     * 邮件主题：【微信JS-SDK反馈】具体问题
+     * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+     */
+    wx.config({
+        debug: false,
+        appId: 'wxf0aa207b2437d9bc',
+        timestamp: @Model.Timestamp,
+        nonceStr: '@Model.NouceString',
+        signature: '@Model.Signature',
+        jsApiList: [
+          // 所有要调用的 API 都要加到这个列表中
+          'checkJsApi',
+           'onMenuShareTimeline',
+           'onMenuShareAppMessage',
+           'showMenuItems',
+           'showOptionMenu'
+        ]
+    });
+    wx.ready(function () {
+        // 在这里调用 API
+        wx.onMenuShareTimeline({
+            title: '【我要报名】100周不间断教唱，玩转鹅妈妈童谣 | 英语启蒙、情商启蒙、认知及身体发展全面培养',
+            desc: '',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364991&idx=2&sn=2a63bb2ea57dc6f5af7556c16e1fe7aa&scene=23&srcid=0807jer6rXaJMHPuRNXjHpl0#rd',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MotherGoose/MotherGoose.png',
+            trigger: function (res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function (res) {
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
+            },
+            cancel: function (res) {
+                //alert('已取消');
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Html.Raw(Model.WechatTitle)',
+            desc: '@Html.Raw(Model.WechatDescription)',
+            link: '@Html.Raw(Model.WechatUrl)',
+            imgUrl: 'http://www.tigerartstudio.cn/images/RadioStation.png',
+            trigger: function(res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function(res) {
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
+            },
+            cancel: function(res) {
+                //alert('已取消');
+            },
+            fail: function(res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    });
+</script>
+</html>

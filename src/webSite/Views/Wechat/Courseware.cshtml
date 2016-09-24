@@ -1,0 +1,145 @@
+﻿@model JSSDKViewModel
+@using Microsoft.AspNet.Http.Authentication
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/story_20160917_6.css" />
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="../../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday_1.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>
+    <script src="../../lib/jquery-collapser/jquery.collapser.min.js"></script>
+</head>
+<body>
+    <div id="jp_container_1" style="margin-left: 2px; height: 100%" class="jp-video jp-video-270p" role="application" aria-label="media player">
+        <div class="jp-type-playlist">
+            <div class="navbar" style="margin-bottom: 5px;">
+                <div class="wrap">
+                    <a href="/231563/">
+                        <img class="navbar-img" src="https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Courseware/TigerStudio_small_gray.png">
+                        <div class="navbar-context">
+                            <div class="navbar-name">兰登英语第一阶段基础课程</div>
+                            <div class="navbar-user">主播: 月亮姐姐</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="alert alert-success desc" style="font-size: small; margin-bottom: 0px; padding-bottom: 5px; padding-top: 5px" role="alert">Step into Reading分为五个级别，循序渐进，由浅入深，内容涵盖经典故事、数学、生活、科普类等。全套书都是原汁原味的英语原版图书，书中用词地道，词汇丰富，插画漂亮，有助于提高孩子的英语阅读能力。每一个级别都为不同阅读能力的孩子设置了适合其应对的小挑战，这让每个孩子都能从阅读中获得快乐并保持良好的信心。</div>
+            <div class="list-group" style="font-family: cursive;font-size: 12px;margin-bottom: 8px;">                
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_ILikeStars?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第一课 - I Like Stars</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_ILikeBugs?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第二课 - I Like Bugs</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_Wheels?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第三课 - Wheels!</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_Boats?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第四课 - Boats</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_TooManyCats?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第五课 - Too Many Cats</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_TooManyDogs?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第六课 - Too Many Dogs</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_HotDog?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第七课 - Hot Dog</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_HogAndDog?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第八课 - Hog and Dog</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_JackAndJill?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第九课 - Jack and Jill and Big Dog Bill</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_DragonEgg?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第十课 - Dragon Egg</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_WatchYourStep?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第十一课 - Watch Your Step, Mr. Rabbit</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_BigEgg?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第十二课 - Big Egg</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_DancingDinos?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第十三课 - Dancing Dinos</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_LionAndMouse?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第十四课 - The Lion and the Mouse</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_DinosGotoSchool?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第十五课 - Dancing Dinos Go to School</a>
+                <a href="http://www.tigerartstudio.cn/wechat/EnglishClass/StepIntoReading_Sunshine?directAccess=true&enableRolling=true&viponly=disable" class="list-group-item" style="color:#337ab7;">♪第一阶段第十六课 - Sunshine, Moonshine</a>
+            </div>
+            <div class="alert alert-info" style="font-size: small; margin-bottom: 8px; padding-bottom: 5px; padding-top: 5px" role="alert">第一阶段延伸课程正在会员群进行中，课程安排如下：</div>
+            <img src="https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Schedule/StepIntoReading_1_Ex.jpg" style="height: 300px; max-width: 98%; display: block;margin: 0 auto;">
+            <br/><br/>
+            <div class="footer">
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary active" role="button">原版进口 <span class="badge">@(new Random().Next(1, 8))</span></a>
+                @*<a style="float: left; margin-left: 12px" href="https://weidian.com/?userid=251230088" class="btn btn-primary active" role="button">老虎书店 <span class="badge">@(new Random().Next(1, 8))</span></a>*@
+                <a style="float: right; margin-right: 12px" href="http://weidian.com/item.html?itemID=1746093768" class="btn btn-primary active" role="button">加入会员 <span class="badge">@(new Random().Next(3300, 3500))</span></a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.desc').collapser({
+                mode: 'lines',
+                truncate: 2
+            });
+        });
+    </script>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    /*
+     * 注意：
+     * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+     * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+     * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+     *
+     * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+     * 邮箱地址：weixin-open@qq.com
+     * 邮件主题：【微信JS-SDK反馈】具体问题
+     * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+     */
+    wx.config({
+        debug: false,
+        appId: 'wxf0aa207b2437d9bc',
+        timestamp: @Model.Timestamp,
+        nonceStr: '@Model.NouceString',
+        signature: '@Model.Signature',
+        jsApiList: [
+          // 所有要调用的 API 都要加到这个列表中
+          'checkJsApi',
+           'onMenuShareTimeline',
+           'onMenuShareAppMessage',
+           'showMenuItems',
+           'showOptionMenu'
+        ]
+    });
+    wx.ready(function () {
+        // 在这里调用 API
+        wx.onMenuShareTimeline({
+            title: '【我要报名】100周不间断教唱，玩转鹅妈妈童谣 | 英语启蒙、情商启蒙、认知及身体发展全面培养',
+            desc: '',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364991&idx=2&sn=2a63bb2ea57dc6f5af7556c16e1fe7aa&scene=23&srcid=0807jer6rXaJMHPuRNXjHpl0#rd',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MotherGoose/MotherGoose.png',
+            trigger: function (res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function (res) {
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
+            },
+            cancel: function (res) {
+                //alert('已取消');
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Html.Raw(Model.WechatTitle)',
+            desc: '@Html.Raw(Model.WechatDescription)',
+            link: '@Html.Raw(Model.WechatUrl)',
+            imgUrl: '@Html.Raw(Model.WechatImgUrl)',
+            trigger: function(res) {
+                // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                //alert('用户点击发送给朋友');
+            },
+            success: function(res) {
+                window.location.href = '@Html.Raw(Model.JumpUrl)';
+            },
+            cancel: function(res) {
+                //alert('已取消');
+            },
+            fail: function(res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    });
+</script>
+</html>

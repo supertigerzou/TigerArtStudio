@@ -13,6 +13,7 @@ namespace webSite.Models
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<MorningNightSharing> MorningNightSharings { get; set; }
+        public DbSet<Album> Albums { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -28,6 +29,10 @@ namespace webSite.Models
 
             builder.Entity<MorningNightSharing>()
                 .Property(m => m.Author)
+                .IsRequired();
+
+            builder.Entity<Album>()
+                .Property(a => a.Name)
                 .IsRequired();
         }        
 
@@ -63,5 +68,16 @@ namespace webSite.Models
         public string Type { get; set; }
         public string AudioName { get; set; }
         public string InsidePagePictures { get; set; }
+    }
+
+    public class Album
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime ValidFrom { get; set; }
+        public DateTime ValidTo { get; set; }
+        public string BannerPicture { get; set; }
+        public string CoverPicture { get; set; }
     }
 }
