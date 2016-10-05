@@ -168,9 +168,45 @@ namespace webSite.Controllers
                         ContentType = new MediaTypeHeaderValue("xml/application")
                     };
                 }
+                else if (contentMessage.Content.Contains("报名"))
+                {
+                    mediaMessage = inputMessage.ReplyMedia(new List<ImageObject>
+                    {
+                        new ImageObject
+                        {
+                            Description = "父母课堂为真心希望陪同孩子一起成长的家长准备，老师和管理员花费大量精力为大家创造这个学习环境。如果您没有做好长期坚持陪伴孩子学习的准备，请把坐席留给更加需要的家长。",
+                            ImageUrl = "https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Others/PrettyBugs.PNG",
+                            Title = "老虎课堂报名详细流程",
+                            Url = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=402601179&idx=1&sn=2cfb5a70504b29d20e73ea669a32029e&scene=1&srcid=0829wdUNh24V5OSkJ1zFQLu2#rd"
+                        }
+                    });
+                    replyContent = new ContentResult
+                    {
+                        Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),
+                        ContentType = new MediaTypeHeaderValue("xml/application")
+                    };
+                }
+                else if (contentMessage.Content.Contains("加入"))
+                {
+                    mediaMessage = inputMessage.ReplyMedia(new List<ImageObject>
+                    {
+                        new ImageObject
+                        {
+                            Description = "为这个世界做一件美丽的事情... 本着这个简单的初心，一群有爱的父母走到了一起，开始为孩子们讲故事、为孩子们筛选优质童书、为父母们答疑解惑。老虎电台、老虎社区、老虎书店以及父母课堂陆续应运而生，旨在为孩子们的童年提供一个高质量的陪伴、为父母们的困惑提供一个长期性的指导。",
+                            ImageUrl = "https://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/Others/RadioStation.jpg",
+                            Title = "欢迎加入老虎大家庭",
+                            Url = "http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=206805237&idx=1&sn=dffe8eb9c85401ddeabc85bad4f5f6bd&mpshare=1&scene=1&srcid=1005dqEnT7xTgIk56p48DvhM#rd"
+                        }
+                    });
+                    replyContent = new ContentResult
+                    {
+                        Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),
+                        ContentType = new MediaTypeHeaderValue("xml/application")
+                    };
+                }
                 else if (contentMessage.Content.Contains("兰登英语"))
                 {
-                    mediaMessage = inputMessage.ReplyContent("《兰登英语》1-3阶原版音频下载链接: https://pan.baidu.com/s/1nvwEFzV 密码: ywfx");
+                    mediaMessage = inputMessage.ReplyContent("《兰登英语》1-3阶原版音频下载链接: https://pan.baidu.com/s/1nvwEFzV 密码: ywfx\n\nMagSpace磁力片火热团购中，<a href=\"http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87\">点击这里</a>了解详情。");
                     replyContent = new ContentResult
                     {
                         Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),
@@ -252,6 +288,42 @@ namespace webSite.Controllers
                 else if (contentMessage.Content.Contains("韵文大师"))
                 {
                     mediaMessage = inputMessage.ReplyContent("《韵文大师Audrey Wood作品9册》原版音频下载链接: https://pan.baidu.com/s/1qYKVg88 密码: 9dun");
+                    replyContent = new ContentResult
+                    {
+                        Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),
+                        ContentType = new MediaTypeHeaderValue("xml/application")
+                    };
+                }
+                else if (contentMessage.Content.Contains("数学游戏练习簿"))
+                {
+                    mediaMessage = inputMessage.ReplyContent("MagSpace配套数学游戏练习簿（共3阶）下载链接: https://pan.baidu.com/s/1dFI9XGP 密码: b3mb\n\nMagSpace磁力片火热团购中，<a href=\"http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87\">点击这里</a>了解详情。");
+                    replyContent = new ContentResult
+                    {
+                        Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),
+                        ContentType = new MediaTypeHeaderValue("xml/application")
+                    };
+                }
+                else if (contentMessage.Content.Contains("磁力片说明书"))
+                {
+                    mediaMessage = inputMessage.ReplyContent("MagSpace各型号通用说明书下载链接: https://pan.baidu.com/s/1gfBexu7 密码: d9ag\n\nMagSpace磁力片火热团购中，<a href=\"http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87\">点击这里</a>了解详情。");
+                    replyContent = new ContentResult
+                    {
+                        Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),
+                        ContentType = new MediaTypeHeaderValue("xml/application")
+                    };
+                }
+                else if (contentMessage.Content.Contains("黑猫警长"))
+                {
+                    mediaMessage = inputMessage.ReplyContent("《黑猫警长》电台专辑下载链接: https://pan.baidu.com/s/1eS5GHjG 密码: gdt7\n\nMagSpace磁力片火热团购中，<a href=\"http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87\">点击这里</a>了解详情。");
+                    replyContent = new ContentResult
+                    {
+                        Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),
+                        ContentType = new MediaTypeHeaderValue("xml/application")
+                    };
+                }
+                else if (contentMessage.Content.Contains("小牛顿"))
+                {
+                    mediaMessage = inputMessage.ReplyContent("《小牛顿科学全知道》电台专辑下载链接: https://pan.baidu.com/s/1jHMT5P0 密码: 5ast\n\nMagSpace磁力片火热团购中，<a href=\"http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87\">点击这里</a>了解详情。");
                     replyContent = new ContentResult
                     {
                         Content = mediaMessage.ToXml().ToString(SaveOptions.DisableFormatting),

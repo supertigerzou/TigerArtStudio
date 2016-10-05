@@ -1,75 +1,28 @@
-﻿@model JSSDKViewModel
-@using Microsoft.AspNet.Http.Authentication
-@{
-    ViewData["Title"] = Model.Title;
-    Layout = null;
-
-    HtmlString message;
-
-    if (ViewData["enableRolling"].ToString() == "true")
-    {
-        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 150px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 150px; ' scrollamount=1>{0}</marquee></div>", Model.Description));
-    }
-    else
-    {
-        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: smaller; color: darkcyan; margin-bottom:10px; height: 150px; overflow: auto'>{0}</div>", Model.Description));
-    }
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>@ViewData["Title"]</title>
+    <title>@Model.Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/story_20160917_6.css" />
     <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css" />
     <link href="../../lib/jplayer/dist/skin/blue.monday/css/jplayer.blue.monday_1.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../lib/jquery/dist/jquery.min.js"></script>
-    @*<script type="text/javascript">
-            //<![CDATA[
-            $(document).ready(function () {
-
-                $(".free-btn").bind("click", function() {
-                    $(".main-bg").css("-webkit-filter", "blur(10px)");
-                    $(".shade").show();
-                });
-
-            });
-            //]]>
-        </script>*@
-    @*<style type="text/css">
-        .shade {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url(../images/OxfordLevel0_small.png) 10px top no-repeat rgba(0,0,0,0.5);
-            display: none;
-        }
-    </style>*@
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="jp_container_1" style="margin-left: 2px; height: 100%" class="jp-video jp-video-270p" role="application" aria-label="media player">
         <div class="jp-type-playlist">
-            <img src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).jpg" style="height: 235px; max-width: 98%; display: block;margin: 0 auto;">
-
-            <audio style="width: 98%; margin: 3px 5px 3px 3px" src="http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).mp3" controls autoplay loop>
-                <p>Your browser does not support the <code>audio</code> element </p>
-            </audio>
-            @Html.Raw(message)
-            @*<marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px"><span style="color:deeppink; font-weight:bold">【会员招募（买一送一）】</span>老虎工作室第二期会员火热招募中，会员期从2016/10/1至2017/3/31，现在加入赠送一个月的会员服务，即日起即可享受：★ 全场书籍95折上折优惠 ★ 英文伴读课程高清音频直接下载，在任何播放设备上陪同孩子反复收听学习 ★ 孩子生日当天由指定的主播姐姐在老虎电台送出贴心的生日祝福 ★ 老虎电台所有故事专辑的高清音频可供下载到故事机及其他播放设备收听 ★ 老虎工作室父母课堂及幼儿综合素质培养系列课程的可供下载音频包 ★ 其他一些即将推出的服务。。。 点击页面右下方<span style="color:deeppink; font-weight:bold">加入会员</span>购买成功后发送手机号到微信<span style="color:deeppink; font-weight:bold">13611784306</span>（勿打电话和短信）完成会员对接。</marquee>*@
-            <div style="height: 45px; margin-top: 0px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
-                <a style="float: left; margin-left: 12px; background-color: #e9168b; border-color: #e9168b; font-weight: bold;" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87" class="btn btn-primary active" role="button">迪斯尼礼盒 <span class="badge" style="color: #e9168b;">@(new Random().Next(1, 8))</span></a>
+            @RenderBody()
+            <div style="height: 60px; margin-top: 0px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
+                <a style="float: left; margin-left: 12px; background-color: #e9168b; border-color: #e9168b; font-weight: bold;" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87" class="btn btn-primary active" role="button">MagSpace磁力片 <span class="badge" style="color: #e9168b;">@(new Random().Next(1, 8))</span></a>
                 @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary active" role="button">原版进口 <span class="badge">@(new Random().Next(1, 8))</span></a>*@
                 @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=402601179&idx=1&sn=2cfb5a70504b29d20e73ea669a32029e&scene=1&srcid=0816XOdVHwAEMThJV1kYS03g#rd" class="btn btn-primary active free-btn" role="button">我要报名 <span class="badge">@(new Random().Next(2000, 4000))</span></a>*@
                 <a style="float: right; margin-right: 12px; background-color: #e9168b; border-color: #e9168b; font-weight: bold;" href="http://weidian.com/item.html?itemID=1746093768" class="btn btn-primary active" role="button">加入会员 <span class="badge" style="color: #e9168b;">@(new Random().Next(4000, 4200))</span></a>
             </div>
         </div>
     </div>
-    <div class="shade"></div>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
@@ -102,10 +55,10 @@
     wx.ready(function () {
         // 在这里调用 API
         wx.onMenuShareTimeline({
-            title: '@Html.Raw(Model.Title)',
-            desc: '@Html.Raw(Model.Description)',
-            link: '@Model.Url',
-            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).jpg',
+            title: '【我要报名】100周不间断教唱，玩转鹅妈妈童谣 | 英语启蒙、情商启蒙、认知及身体发展全面培养',
+            desc: '',
+            link: 'http://mp.weixin.qq.com/s?__biz=MzA5NTU0MTMzOQ==&mid=2652364991&idx=2&sn=2a63bb2ea57dc6f5af7556c16e1fe7aa&scene=23&srcid=0807jer6rXaJMHPuRNXjHpl0#rd',
+            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MotherGoose/MotherGoose.png',
             trigger: function (res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');
@@ -122,10 +75,10 @@
         });
 
         wx.onMenuShareAppMessage({
-            title: '@Html.Raw(Model.Title)',
-            desc: '@Html.Raw(Model.Description.Replace("<br/>", " "))',
-            link: '@Model.Url',
-            imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/MorningNightSharing/@(Model.ID).jpg',
+            title: '@Html.Raw(Model.WechatTitle)',
+            desc: '@Html.Raw(Model.WechatDescription)',
+            link: '@Html.Raw(Model.WechatUrl)',
+            imgUrl: 'http://www.tigerartstudio.cn/images/RadioStation.png',
             trigger: function(res) {
                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
                 //alert('用户点击发送给朋友');

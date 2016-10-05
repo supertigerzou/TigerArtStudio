@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{14E1E960-D51C-4696-985E-61DF39A7726C}"
 EndProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "webSite", "src\webSite\webSite.xproj", "{F98C2712-EBE2-4C76-9E7A-8F8F7247B49D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebChatApi.Contract", "..\TigerStudio\src\Libraries\WebChatApi.Contract\WebChatApi.Contract.csproj", "{B602F558-734B-4357-A1A3-153BB973191A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +24,10 @@ Global
 		{F98C2712-EBE2-4C76-9E7A-8F8F7247B49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F98C2712-EBE2-4C76-9E7A-8F8F7247B49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F98C2712-EBE2-4C76-9E7A-8F8F7247B49D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B602F558-734B-4357-A1A3-153BB973191A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B602F558-734B-4357-A1A3-153BB973191A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B602F558-734B-4357-A1A3-153BB973191A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B602F558-734B-4357-A1A3-153BB973191A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

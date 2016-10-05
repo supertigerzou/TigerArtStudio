@@ -1,26 +1,14 @@
 ﻿@model JSSDKViewModel
 @using Microsoft.AspNet.Http.Authentication
 @{
-    ViewData["Title"] = Model.Title;
     Layout = null;
-
-    HtmlString message;
-
-    if (ViewData["enableRolling"].ToString() == "true")
-    {
-        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: small; color: darkcyan; margin-bottom:10px; padding-left: 15px; padding-right: 15px; max-height: 79px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 79px' scrollamount=1>{0}</marquee></div>", Model.Description));
-    }
-    else
-    {
-        message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: small; color: darkcyan; margin-bottom:10px; padding-left: 15px; padding-right: 15px; max-height: 79px; overflow: auto'>{0}</div>", Model.Description));
-    }
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>@ViewData["Title"]</title>
+    <title>@Model.Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../css/story_20160917_6.css" />
@@ -724,7 +712,21 @@
             {
                 <div class="seperateLine"></div>
             }
+            
+            @{
+                HtmlString message;
+
+                if (ViewData["enableRolling"].ToString() == "true")
+                {
+                    message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: small; color: darkcyan; margin-bottom:10px; padding-left: 15px; padding-right: 15px; max-height: 79px; overflow: auto'><marquee behavior='scroll' direction='up' style='height: 79px' scrollamount=1>{0}</marquee></div>", Model.Description));
+                }
+                else
+                {
+                    message = new HtmlString(string.Format("<div style='font-family: KaiTi; font-size: small; color: darkcyan; margin-bottom:10px; padding-left: 15px; padding-right: 15px; max-height: 79px; overflow: auto'>{0}</div>", Model.Description));
+                }
+            }
             @Html.Raw(message)
+            
             @if (ViewData["sharable"].ToString() == "true")
             {
                 <div class="alert alert-success" style="font-size: small; margin-bottom: 0px; padding-bottom: 5px; padding-top: 5px" role="alert">老虎工作室的英文伴读课程主要针对父母和孩子在英语启蒙、亲子阅读过程中的诸多疑问和困难，将绘本书面内容、延伸内容、互动方法以及语言点等知识，以各种活泼生动的方式展现，鼓励父母陪伴孩子共同学习。</div>
@@ -736,7 +738,7 @@
 
             @if (ViewData["viponly"].ToString() == "true")
             {
-                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px"><span style="color:deeppink; font-weight:bold">【续费通知】</span>各位会员家长，本期会员将于月底统一到期，希望您能尽快续费，会员期内续费有如下三点优势：★ 可以走会员通道购买会员服务，享受 < span style = "color:deeppink; font-weight:bold" > 95折优惠 </ span >。★ < span style = "color:deeppink; font-weight:bold" > 连续会龄 </ span > 是会员的一项重要指标，如果您在会员期结束被移除出群后再重新对接入群的话，会龄会被做清零处理，因此没有办法参加我们即将推出的一些针对老会员的优惠活动。★ 会员期满之后的几天因为数据要做整体迁移，新会员对接的速度会比较缓慢，您可能会因此错过 < span style = "color:deeppink; font-weight:bold" > 3 - 7天的课程 </ span >。会员到期被移除出群会丢失之前的历史记录，一定程度内影响到孩子学习的连续性和完整性。续费步骤很简单：进入会员通道后选择类别“< span style = "color:deeppink; font-weight:bold" > 会员服务 </ span >”，直接购买即可。</marquee >
+                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px"><span style="color:deeppink; font-weight:bold">【开团通知】</span>今晚8点开团两套新书，《迪斯尼欢乐畅游礼盒限量珍藏版》和《东方娃娃·婴儿文库》5-8辑，点击页面下方的『<span style="color:red; font-weight:bold">精彩文章</span>』按钮浏览书籍详情介绍。</marquee >
             }
             else if (ViewData["viponly"].ToString() == "disable") { }
             else if (Model.ID.Contains("MotherGoose_"))
@@ -753,7 +755,7 @@
             }
             else if (Model.ID.StartsWith("TheVery_"))
             {
-                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">本课件有效期截止<span style="color:red; font-weight:bold">10/19</span>,如需领取基础课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">5次</span>即可顺利毕业获赠伴读音频。会员无须打卡，可以直接领取伴读课程包，发送消息<span style="color:deeppink; font-weight:bold">会员</span>到微信公众号“老虎工作室”了解详情。</marquee>
+                <marquee behavior='scroll' direction='left' scrollamount=1 style="font-size: small; margin-bottom: 0px; margin-top: 5px">本课件有效期截止<span style="color:red; font-weight:bold">10/19</span>,如需领取基础课程音频包，请遵照管理员提供的<span style="font-weight:bold">签到流程</span>每次课后坚持打卡，满<span style="color:red; font-weight:bold">5次</span>即可顺利毕业获赠伴读音频。会员无须打卡，可以直接领取伴读课程包，发送消息<span style="color:deeppink; font-weight:bold">会员</span>到微信公众号“老虎工作室”了解详情。《DK家庭医生》由世界著名出版公司——英国DK出版集团携手英国医学会、美国医师协会联合出版，百余位世界顶级医学专家共同编纂，在英国出版14年来，历经3次更新修订，是欧美家庭必备三大图书之一，累计销售超2000千万册。原价350元，当当价240.5元，老虎工作室团购价198元，会员价<span style="color:red; font-weight:bold">188</span>元。特邀科普达人『二喵居士』深度诠释本书，只为健康这个大家永恒的追求。发送消息“我要报名”到微信公众号“老虎小助手”了解报名详情。</marquee>
             }
             else if (Model.ID.StartsWith("Biscuit_"))
             {
@@ -766,11 +768,11 @@
 
             <div style="height: 45px; margin-top: 0px; border-top-style: groove; border-top-color: lightskyblue; border-top-width: thin; padding-top: 5px;">
                 @*<a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=63590764&des=%E5%8E%9F%E7%89%88%E8%BF%9B%E5%8F%A3" class="btn btn-primary active" role="button">原版进口 <span class="badge">@(new Random().Next(1, 8))</span></a>*@
-                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87" class="btn btn-primary active" role="button">MagSpace磁力片 <span class="badge">@(new Random().Next(1, 8))</span></a>
+                <a style="float: left; margin-left: 12px" href="http://weidian.com/item_classes.html?userid=251230088&c=72093131&des=MagSpace%E7%A3%81%E5%8A%9B%E7%89%87" class="btn btn-primary active" role="button">国庆特价专场 <span class="badge">@(new Random().Next(1, 8))</span></a>
                 @if (ViewData["viponly"].ToString() == "true" || ViewData["viponly"].ToString() == "disable")
                 {
-                    <a style="float: right; margin-right: 12px" href="http://weidian.com/item.html?itemID=1746093768" class="btn btn-primary active" role="button">会员续费 <span class="badge">@(new Random().Next(3300, 3400))</span></a>
-                    @*<a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary active" role="button">精彩文章 <span class="badge">@(new Random().Next(1, 6))</span></a>*@
+                    @*<a style="float: right; margin-right: 12px" href="http://weidian.com/item.html?itemID=1746093768" class="btn btn-primary active" role="button">会员续费 <span class="badge">@(new Random().Next(3300, 3400))</span></a>*@
+                    <a style="float: right; margin-right: 12px" href="http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MzA5NTU0MTMzOQ==#wechat_webview_type=1&wechat_redirect" class="btn btn-primary active" role="button">精彩文章 <span class="badge">@(new Random().Next(1, 6))</span></a>
                 }
                 else
                 {
@@ -833,7 +835,7 @@
         });
 
         wx.onMenuShareAppMessage({
-            title: '@Html.Raw(Model.WechatTitle)',
+            title: '@Html.Raw(Model.WechatTitle.Replace("'","\\'"))',
             desc: '@Html.Raw(Model.WechatDescription)',
             link: '@Html.Raw(Model.WechatUrl)',
             imgUrl: 'http://tigerstudio.blob.core.chinacloudapi.cn/mediafiles/EnglishClass/@(Model.ID).jpg',
