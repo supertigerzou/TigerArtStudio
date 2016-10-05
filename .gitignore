@@ -239,4 +239,4 @@ _Pvt_Extensions
 *.mp3
 
 # application settings
-appsettings.json
+*.appsettings.json
