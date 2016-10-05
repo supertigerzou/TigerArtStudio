@@ -237,6 +237,3 @@ _Pvt_Extensions
 
 # media files
 *.mp3
-
-# application settings
-*.appsettings.json
